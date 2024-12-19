@@ -11,10 +11,30 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { login } from "./actions";
+import { useRouter } from "next/navigation";
+import { Login } from "@mui/icons-material"
+import { useState } from "react"
 export function LoginForm({
   className,
   ...props
 }) {
+  const router = useRouter();
+  const [loginError, setLoginError] = useState(null);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    const { user, error } = await login(formData);
+    if (error) {
+      setLoginError(error.message);
+    } else {
+      router.push("/dashboard");
+    }
+  };
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -26,10 +46,10 @@ export function LoginForm({
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full" >
                   <GitHubIcon style={{ fontSize: '32px', marginRight: '8px'}} />
                   Login with GitHub
                 </Button>
@@ -46,6 +66,11 @@ export function LoginForm({
               </div>
               <div className="grid gap-6">
                 <div className="grid gap-2">
+                  {loginError && (
+                    <p className="text-red-500 text-sm text-center">
+                      {loginError}
+                    </p>
+                  )}
                   <Label htmlFor="email">Email</Label>
                   <Input id="email" type="email" placeholder="example@email.com" required />
                 </div>

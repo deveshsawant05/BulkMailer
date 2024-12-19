@@ -2,7 +2,7 @@
 import { GalleryVerticalEnd } from "lucide-react"
 
 import { SignUpForm } from "./signup-form"
-import Logo from "@/components/logo";
+import Logo from "@/components/logo"
 export default function SignUpPage() {
   return (
     (
