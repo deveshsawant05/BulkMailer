@@ -1,3 +1,4 @@
+"use client"
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import {
@@ -46,7 +47,7 @@ export function LoginForm({
               <div className="grid gap-6">
                 <div className="grid gap-2">
                   <Label htmlFor="email">Email</Label>
-                  <Input id="email" type="email" placeholder="m@example.com" required />
+                  <Input id="email" type="email" placeholder="example@email.com" required />
                 </div>
                 <div className="grid gap-2">
                   <div className="flex items-center">
@@ -55,7 +56,7 @@ export function LoginForm({
                       Forgot your password?
                     </a>
                   </div>
-                  <Input id="password" className="text-bold font-3xl" type="password" required />
+                  <Input id="password" className="text-bold font-3xl" placeholder="password" type="password" required />
                 </div>
                 <Button type="submit" className="w-full bg-black text-white hover:bg-[--primary] animation duration-500">
                   Login
@@ -63,7 +64,7 @@ export function LoginForm({
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a href="#" className="underline underline-offset-4 hover:text-[--primary] duration-500 animation">
+                <a href="/signup" className="underline underline-offset-4 hover:text-[--primary] duration-500 animation">
                   Sign up
                 </a>
               </div>
@@ -76,5 +77,6 @@ export function LoginForm({
         By clicking continue, you agree to our <a className="hover:text-[--primary] animation duration-300" href="#">Terms of Service</a>{" "}
         and <a  className="hover:text-[--primary] animation duration-300" href="#">Privacy Policy</a>.
       </div>
-    </div>);
+    </div>
+  );
 }
