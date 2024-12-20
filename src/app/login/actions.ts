@@ -24,4 +24,45 @@ export async function login(formData: FormData) {
   revalidatePath('/', 'layout')
   redirect('/dashboard')
 }
+export async function signInWithGoogle() {
+  const supabase = await createClient();
+  const redirectTo = process.env.NODE_ENV === 'production' 
+    ? `${process.env.SITEURL}/dashboard` 
+    : `http://localhost:3000/dashboard`;
 
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo,
+    },
+  });
+  if (error) {
+    console.error(error);
+    // Handle error appropriately
+    return;
+  }
+  if (data?.url) {
+    return redirect(data.url);
+  }
+}
+export async function signInWithGitHub() {
+  const supabase = await createClient();
+  const redirectTo = process.env.NODE_ENV === 'production' 
+    ? `${process.env.SITEURL}/dashboard` 
+    : `http://localhost:3000/dashboard`;
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: 'github',
+    options: {
+      redirectTo,
+    },
+  });
+  if (error) {
+    console.error(error);
+    // Handle error appropriately
+    return;
+  }
+  if (data?.url) {
+    return redirect(data.url);
+  }
+}

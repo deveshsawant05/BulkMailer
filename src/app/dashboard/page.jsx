@@ -1,3 +1,4 @@
+"use client"
 import { AppSidebar } from "@/components/app-sidebar"
 import {
   Breadcrumb,
@@ -14,7 +15,32 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 
+import { useEffect, useState } from 'react';
+import { createClient } from '@/utils/supabase/client'; 
+
+
 export default function Page() {
+  const [user, setUser] = useState(null);
+  const supabase = createClient();
+  useEffect(() => {
+    const fetchUser = async () => {
+      const { data: { session } } = await supabase.auth.getSession();
+
+      if (session) {
+        setUser(session.user);
+      } else {
+        console.error('No session found');
+      }
+    };
+
+    fetchUser();
+  }, []);
+
+  if (!user) {
+    return <p>Loading...</p>;
+  }
+
+
   return (
     (<SidebarProvider>
       <AppSidebar />
