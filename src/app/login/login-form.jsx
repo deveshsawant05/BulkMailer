@@ -28,7 +28,7 @@ export function LoginForm({
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
-    const { user, error } = await login(formData);
+    const { error } = await login(formData);
     if (error) {
       setLoginError(error.message);
     } else {
