@@ -58,7 +58,7 @@ export function SignUpForm({ className, ...props }) {
 
       const { user, error } = await signup(formData);
       if (error) {
-        setPasswordError(error);
+        setPasswordError(error.message);
       } else {
         router.push("/signup/confirm");
       }

@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from 'react';
 import { cn } from "@/lib/utils";
 import Logo from "@/components/logo";
@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
-export default function ConfirmSignUp() {
+
+export default function VerifiedEmail() {
 
     const router = useRouter();
 
@@ -23,8 +24,8 @@ export default function ConfirmSignUp() {
                 <a href="/" className="flex items-center gap-2 self-center font-medium">
                     <Logo />
                 </a>
-                <CardTitle>Confirm Your Email</CardTitle>
-                <CardDescription>Please check your email and click on the confirmation link to complete your signup process.</CardDescription>
+                <CardTitle>Email Verified</CardTitle>
+                <CardDescription>Your email has been successfully verified. You can now log in using your account.</CardDescription>
                 <Button
                     type="button"
                     className="w-full bg-black text-white hover:bg-[--primary] animation duration-500"
