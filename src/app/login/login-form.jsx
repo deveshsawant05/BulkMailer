@@ -22,7 +22,11 @@ export function LoginForm({ className, ...props }) {
   const supabase = createClient();
   useEffect(() => {
     const checkSession = async () => {
-      const { data: { session } } = await supabase.auth.getSession();
+      const { data: { session }, error } = await supabase.auth.getSession();
+      if (error) {
+        console.error('Error fetching session:', error);
+        return;
+      }
       console.log(session);
       
       if (session) {
@@ -41,11 +45,17 @@ export function LoginForm({ className, ...props }) {
     const formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    const { error } = await login(formData);
-    if (error) {
-      setLoginError(error.message);
-    } else {
-      router.push("/dashboard");
+
+    try {
+      const { error } = await login(formData);
+      if (error) {
+        setLoginError(error.message);
+      } else {
+        router.push("/dashboard");
+      }
+    } catch (err) {
+      setLoginError("An unexpected error occurred");
+      console.error(err);
     }
   };
 
@@ -72,7 +82,7 @@ export function LoginForm({ className, ...props }) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
+          <div>
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button
@@ -98,6 +108,8 @@ export function LoginForm({ className, ...props }) {
                   Login with Google
                 </Button>
               </div>
+              </div>
+            <form onSubmit={handleSubmit}>
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
                   Or continue with
@@ -152,8 +164,8 @@ export function LoginForm({ className, ...props }) {
                   Sign up
                 </a>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </CardContent>
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 ">
