@@ -16,7 +16,7 @@ export async function login(formData: FormData) {
   }
 
   const { error } = await supabase.auth.signInWithPassword(data)
-
+  console.log('Error:', error)
   if (error) {
     return { error }
   }
@@ -24,32 +24,32 @@ export async function login(formData: FormData) {
   revalidatePath('/', 'layout')
   redirect('/dashboard')
 }
-export async function signInWithGoogle() {
-  const supabase = await createClient();
-  const redirectTo = process.env.NODE_ENV === 'production' 
-    ? `${process.env.SITEURL}/dashboard` 
-    : `http://localhost:3000/dashboard`;
 
+export async function signInWithGoogle(redirectTo: string) {
+  const supabase = await createClient();
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'google',
     options: {
       redirectTo,
     },
   });
+
   if (error) {
-    console.error(error);
+    console.error('OAuth error:', error);
     // Handle error appropriately
     return;
   }
+
   if (data?.url) {
+    console.log('Redirect URL:', data.url);
     return redirect(data.url);
+  } else {
+    console.error('No redirect URL returned from OAuth');
   }
 }
-export async function signInWithGitHub() {
+
+export async function signInWithGitHub(redirectTo: string) {
   const supabase = await createClient();
-  const redirectTo = process.env.NODE_ENV === 'production' 
-    ? `${process.env.SITEURL}/dashboard` 
-    : `http://localhost:3000/dashboard`;
 
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: 'github',

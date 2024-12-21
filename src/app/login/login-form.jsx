@@ -12,12 +12,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { login, signInWithGoogle, signInWithGitHub } from "./actions";
-import { useRouter } from "next/navigation";
+import { permanentRedirect, useRouter } from "next/navigation";
 import { Login } from "@mui/icons-material";
 import { useState ,useEffect } from "react";
 import { createClient } from '@/utils/supabase/client'
 
 export function LoginForm({ className, ...props }) {
+  const [loading, setLoading] = useState(true);
+
   const router = useRouter();
   const supabase = createClient();
   useEffect(() => {
@@ -31,7 +33,10 @@ export function LoginForm({ className, ...props }) {
       
       if (session) {
         // Redirect to dashboard if the user is already logged in
-        router.push('/dashboard');
+        permanentRedirect('/dashboard');
+      }
+      else{
+        setLoading(false);
       }
     };
 
@@ -51,7 +56,7 @@ export function LoginForm({ className, ...props }) {
       if (error) {
         setLoginError(error.message);
       } else {
-        router.push("/dashboard");
+        permanentRedirect("/dashboard");
       }
     } catch (err) {
       setLoginError("An unexpected error occurred");
@@ -59,18 +64,18 @@ export function LoginForm({ className, ...props }) {
     }
   };
 
-  const handleGoogleLogin = () => {
-    const handleGoogleLogin = async () => {
-      await signInWithGoogle();
+  const handleGoogleLogin = async () => {
+      const redirectTo = `${window.location.origin}/dashboard`; // Get the current URL dynamically
+      await signInWithGoogle(redirectTo);
     };
-    handleGoogleLogin();
+  const handleGithubLogin = async () => {
+    const redirectTo = `${window.location.origin}/dashboard`; // Get the current URL dynamically
+      await signInWithGitHub(redirectTo);
   };
-  const handleGithubLogin = () => {
-    const handleGithubLogin = async () => {
-      await signInWithGitHub();
-    };
-    handleGithubLogin();
-  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
@@ -82,7 +87,7 @@ export function LoginForm({ className, ...props }) {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div>
+          <div className="flex flex-col gap-6">
             <div className="grid gap-6">
               <div className="flex flex-col gap-4">
                 <Button
@@ -108,8 +113,8 @@ export function LoginForm({ className, ...props }) {
                   Login with Google
                 </Button>
               </div>
-              </div>
-            <form onSubmit={handleSubmit}>
+            </div>
+            <form onSubmit={handleSubmit} className="grid gap gap-6">
               <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                 <span className="relative z-10 bg-background px-2 text-muted-foreground">
                   Or continue with
