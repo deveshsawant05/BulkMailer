@@ -14,7 +14,6 @@ export async function signup(formData: FormData) {
       password: formData.get("password") as string,
       options: JSON.parse(formData.get("options") as string),
     };
-    console.log(data.options.data.name);
     const { error } = await supabase.auth.signUp(data);
     if (error) {
       return { success: false, error: error.message };

@@ -12,12 +12,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 import { Eye, EyeOff, CircleCheckBig, CircleX } from "lucide-react";
-import { useState } from "react";
+import { useState ,useEffect} from "react";
+import { PrimaryLoader } from "@/components/loader";
+import { createClient } from "@/utils/supabase/client";
 
 import { signup } from "./actions";
 import { useRouter } from "next/navigation";
 export function SignUpForm({ className, ...props }) {
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -71,6 +75,37 @@ export function SignUpForm({ className, ...props }) {
       }
     }
   };
+
+  const supabase = createClient();
+  useEffect(() => {
+    const checkSession = async () => {
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
+      if (error) {
+        console.error("Error fetching session:", error);
+        return;
+      }
+      if (session) {
+        // Redirect to dashboard if the user is already logged in
+        permanentRedirect("/dashboard");
+      } else {
+        setLoading(false);
+      }
+    };
+
+    checkSession();
+  }, [router]);
+  
+  if (loading) {
+    return (
+      <div className="w-full flex no-wrap justify-center mt-5">
+        <h2 className="font-bold">Loading</h2>
+        <PrimaryLoader />
+      </div>
+    );
+  }
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

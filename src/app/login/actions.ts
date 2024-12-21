@@ -46,7 +46,6 @@ export async function signInWithGoogle(redirectTo: string) {
   }
 
   if (data?.url) {
-    console.log("Redirect URL:", data.url);
     return redirect(data.url);
   } else {
     console.error("No redirect URL returned from OAuth");
@@ -70,4 +69,18 @@ export async function signInWithGitHub(redirectTo: string) {
   if (data?.url) {
     return redirect(data.url);
   }
+}
+
+export async function logout() {
+  const supabase = await createClient();
+  const { error } = await supabase.auth.signOut();
+
+  if (error) {
+    console.error("Error during sign-out:", error);
+    return { success: false, error: error.message };
+  }
+
+  revalidatePath("/", "layout");
+  redirect("/login");
+  return { success: true };
 }

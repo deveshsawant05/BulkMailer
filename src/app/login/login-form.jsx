@@ -14,36 +14,38 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 import { login, signInWithGoogle, signInWithGitHub } from "./actions";
 import { permanentRedirect, useRouter } from "next/navigation";
 import { Login } from "@mui/icons-material";
-import { useState ,useEffect } from "react";
-import { createClient } from '@/utils/supabase/client'
-
+import { useState, useEffect } from "react";
+import { createClient } from "@/utils/supabase/client";
+import { PrimaryLoader, ButtonLoader } from "@/components/loader";
 export function LoginForm({ className, ...props }) {
   const [loading, setLoading] = useState(true);
-
+  const [loginLoading, setLoginLoading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
   useEffect(() => {
     const checkSession = async () => {
-      const { data: { session }, error } = await supabase.auth.getSession();
+      const {
+        data: { session },
+        error,
+      } = await supabase.auth.getSession();
       if (error) {
-        console.error('Error fetching session:', error);
+        console.error("Error fetching session:", error);
         return;
       }
-      console.log(session);
-      
       if (session) {
         // Redirect to dashboard if the user is already logged in
-        permanentRedirect('/dashboard');
-      }
-      else{
+        permanentRedirect("/dashboard");
+      } else {
         setLoading(false);
       }
     };
 
     checkSession();
   }, [router]);
+
   const [loginError, setLoginError] = useState(null);
   const handleSubmit = async (e) => {
+    setLoginLoading(true);  
     e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
@@ -54,27 +56,35 @@ export function LoginForm({ className, ...props }) {
     try {
       const { error } = await login(formData);
       if (error) {
+        setLoginLoading(false);
         setLoginError(error);
       } else {
+        setLoginLoading(false);
         permanentRedirect("/dashboard");
       }
     } catch (err) {
+      setLoginLoading(false);
       setLoginError("An unexpected error occurred");
       console.error(err);
     }
   };
 
   const handleGoogleLogin = async () => {
-      const redirectTo = `${window.location.origin}/dashboard`; // Get the current URL dynamically
-      await signInWithGoogle(redirectTo);
-    };
+    const redirectTo = `${window.location.origin}/dashboard`; // Get the current URL dynamically
+    await signInWithGoogle(redirectTo);
+  };
   const handleGithubLogin = async () => {
     const redirectTo = `${window.location.origin}/dashboard`; // Get the current URL dynamically
-      await signInWithGitHub(redirectTo);
+    await signInWithGitHub(redirectTo);
   };
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div className="w-full flex no-wrap justify-center mt-5">
+        <h2 className="font-bold">Loading</h2>
+        <PrimaryLoader />
+      </div>
+    );
   }
 
   return (
@@ -147,7 +157,7 @@ export function LoginForm({ className, ...props }) {
                   </div>
                   <Input
                     id="password"
-                    className="text-bo</a>ld font-3xl"
+                    className="text-bold font-3xl"
                     placeholder="password"
                     type="password"
                     required
@@ -157,7 +167,7 @@ export function LoginForm({ className, ...props }) {
                   type="submit"
                   className="w-full bg-black text-white hover:bg-[--primary] animation duration-500"
                 >
-                  Login
+                  {loginLoading ? <div className="flex no-wrap">Logging In<ButtonLoader /></div> : "Login"}
                 </Button>
               </div>
               <div className="text-center text-sm">

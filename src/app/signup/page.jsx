@@ -12,7 +12,6 @@ export default function SignUpPage() {
     useEffect(() => {
       const checkSession = async () => {
         const { data: { session } } = await supabase.auth.getSession();
-        console.log(session);
         
         if (session) {
           // Redirect to dashboard if the user is already logged in

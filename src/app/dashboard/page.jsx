@@ -17,10 +17,12 @@ import {
 
 import { useEffect, useState } from 'react';
 import { createClient } from '@/utils/supabase/client'; 
-
-
+import { permanentRedirect } from "next/navigation"
+import { PrimaryLoader } from "@/components/loader"
+import Logo from "@/components/logo"
 export default function Page() {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
   const supabase = createClient();
   useEffect(() => {
     const fetchUser = async () => {
@@ -28,18 +30,31 @@ export default function Page() {
 
       if (session) {
         setUser(session.user);
+        setLoading(false);
       } else {
-        console.error('No session found');
+        setLoading(false);
+        permanentRedirect("/login");
       }
     };
 
     fetchUser();
   }, []);
-
-  if (!user) {
-    return <p>Loading...</p>;
+  
+  if (loading) {
+    return (
+      <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:py-6 md:px-10">
+        <div className="flex w-full max-w-sm flex-col gap-2">
+          <a href="/" className="flex items-center gap-2 self-center font-medium">
+            <Logo />
+          </a>
+          <div className="w-full flex no-wrap justify-center mt-5">
+            <h2 className="font-bold">Loading</h2>
+            <PrimaryLoader />
+          </div>
+        </div>
+      </div>
+    );
   }
-
 
   return (
     (<SidebarProvider>
