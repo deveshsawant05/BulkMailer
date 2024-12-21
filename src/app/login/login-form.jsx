@@ -54,7 +54,7 @@ export function LoginForm({ className, ...props }) {
     try {
       const { error } = await login(formData);
       if (error) {
-        setLoginError(error.message);
+        setLoginError(error);
       } else {
         permanentRedirect("/dashboard");
       }
