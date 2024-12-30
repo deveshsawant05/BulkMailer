@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 
 import { Eye, EyeOff, CircleCheckBig, CircleX } from "lucide-react";
 import { useState ,useEffect} from "react";
-import { PrimaryLoader } from "@/components/loader";
+import { PrimaryLoader , ButtonLoader } from "@/components/loader";
 import { createClient } from "@/utils/supabase/client";
 
 import { signup } from "./actions";
@@ -21,6 +21,7 @@ import { useRouter } from "next/navigation";
 export function SignUpForm({ className, ...props }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
+  const [signupLoading, setSignupLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -45,6 +46,7 @@ export function SignUpForm({ className, ...props }) {
   };
 
   const handleSubmit = async (e) => {
+    setSignupLoading(true);
     e.preventDefault();
     const passwordRegex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -74,6 +76,7 @@ export function SignUpForm({ className, ...props }) {
         setConfirmPasswordError("Passwords do not match");
       }
     }
+    setSignupLoading(false); 
   };
 
   const supabase = createClient();
@@ -242,7 +245,7 @@ export function SignUpForm({ className, ...props }) {
                 type="submit"
                 className="w-full bg-black text-white hover:bg-[--primary] animation duration-500"
               >
-                Sign up
+                {signupLoading ? <div className="flex no-wrap">Signing up<ButtonLoader /></div> : "Sign up"}
               </Button>
               <div className="text-center text-sm">
                 Already have an account?{" "}

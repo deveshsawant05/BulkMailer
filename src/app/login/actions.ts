@@ -7,27 +7,21 @@ import { createClient } from "@/utils/supabase/server";
 
 export async function login(formData: FormData) {
   const supabase = await createClient();
-  try {
-    const data = {
-      email: formData.get("email") as string,
-      password: formData.get("password") as string,
-    };
+  const data = {
+    email: formData.get("email") as string,
+    password: formData.get("password") as string,
+  };
 
-    const { error } = await supabase.auth.signInWithPassword(data);
-    if (error) {
-      return { success: false, error: error.message };
-    }
+  const { error } = await supabase.auth.signInWithPassword(data);
 
-    return { success: true, data };
-  } catch (err) {
-    console.error("Unexpected error during sign-in:", err);
-    return {
-      success: false,
-      error: "An unexpected error occurred. Please try again.",
-    };
+  if (error) {
+    console.error("Login error:", error.message);
+    return { success: false, error: error.message };
   }
-  revalidatePath("/", "layout");
+
+  revalidatePath("/");
   redirect("/dashboard");
+
 }
 
 export async function signInWithGoogle(redirectTo: string) {

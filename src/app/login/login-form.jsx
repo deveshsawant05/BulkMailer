@@ -54,18 +54,14 @@ export function LoginForm({ className, ...props }) {
     formData.append("password", password);
 
     try {
-      const { error } = await login(formData);
-      if (error) {
-        setLoginLoading(false);
-        setLoginError(error);
-      } else {
-        setLoginLoading(false);
-        permanentRedirect("/dashboard");
+      const { success, error } = await login(formData);
+      if (!success) {
+        throw new Error(error);
       }
+      setLoginLoading(false);
     } catch (err) {
       setLoginLoading(false);
-      setLoginError("An unexpected error occurred");
-      console.error(err);
+      setLoginError(err.message);
     }
   };
 
@@ -106,7 +102,8 @@ export function LoginForm({ className, ...props }) {
                   onClick={handleGithubLogin}
                 >
                   <GitHubIcon
-                    style={{ fontSize: "32px", marginRight: "8px" }}
+                    style={{height:"22px",width:"22px"}}
+                    className="mr-2"
                   />
                   Login with GitHub
                 </Button>
@@ -150,7 +147,7 @@ export function LoginForm({ className, ...props }) {
                     <Label htmlFor="password">Password</Label>
                     <a
                       href="#"
-                      className="ml-auto text-muted-foreground text-sm underline-offset-4 hover:underline hover:text-[--primary]"
+                      className="ml-auto text-muted-foreground text-xs underline-offset-4 hover:underline hover:text-[--primary]"
                     >
                       Forgot your password?
                     </a>
