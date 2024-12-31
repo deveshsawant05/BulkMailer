@@ -1,9 +1,8 @@
-"use client"
+"use server"
 import { GalleryVerticalEnd } from "lucide-react"
-
 import { LoginForm } from "./login-form"
 import Logo from "@/components/logo";
-export default function LoginPage() {
+export default async function LoginPage() {
   return (
     (
     <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:py-2 md:px-10">
