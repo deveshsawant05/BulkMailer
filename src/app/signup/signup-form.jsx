@@ -17,7 +17,7 @@ import { PrimaryLoader , ButtonLoader } from "@/components/loader";
 import { createClient } from "@/utils/supabase/client";
 
 import { signup } from "./actions";
-import { useRouter } from "next/navigation";
+import { useRouter , permanentRedirect } from "next/navigation";
 export function SignUpForm({ className, ...props }) {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
