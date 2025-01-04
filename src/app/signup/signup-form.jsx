@@ -13,7 +13,7 @@ import { Label } from "@/components/ui/label";
 
 import { Eye, EyeOff, CircleCheckBig, CircleX } from "lucide-react";
 import { useState ,useEffect} from "react";
-import { PrimaryLoader , ButtonLoader } from "@/components/loader";
+import { PrimaryLoader , ButtonLoader } from "@/components/global/loader";
 import { createClient } from "@/utils/supabase/client";
 
 import { signup } from "./actions";

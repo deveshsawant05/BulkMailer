@@ -19,4 +19,18 @@ const Logo = () => {
     );
 };
 
+export const LogoTitle = ({className}) => {
+    return (
+        <span className={`${gentySans.className} text-3xl items-center ${className}`}>
+            <span className="">Bulk</span>
+            <span className="text-[--primary]">Mailer</span>
+        </span>
+    );
+}
+export const LogoIcon = () => {
+    return (
+        <Image src="/BulkMailer.svg" alt="BulkMailer Logo" width={40} height={40} />
+    );
+}
+
 export default Logo;

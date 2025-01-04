@@ -16,7 +16,7 @@ import { permanentRedirect, useRouter } from "next/navigation";
 import { Login } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
-import { PrimaryLoader, ButtonLoader } from "@/components/loader";
+import { PrimaryLoader, ButtonLoader } from "@/components/global/loader";
 export function LoginForm({ className, ...props }) {
   const [loading, setLoading] = useState(true);
   const [loginLoading, setLoginLoading] = useState(false);
