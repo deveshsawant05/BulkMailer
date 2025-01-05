@@ -41,7 +41,7 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      url: "/dashboard",
       icon: BarChart,
       isActive: true,
       items: [
@@ -57,50 +57,50 @@ const data = {
     },
     {
       title: "Campaigns",
-      url: "#",
+      url: "/campaigns",
       icon: Mail,
       items: [
         {
           title: "All Campaigns",
-          url: "#",
+          url: "/campaigns",
         },
         {
           title: "Create Campaign",
-          url: "#",
+          url: "/campaigns/create",
         },
       ],
     },
     {
       title: "Templates",
-      url: "#",
+      url: "/templates",
       icon: FileText,
       items: [
         {
           title: "All Templates",
-          url: "#",
+          url: "/templates",
         },
         {
           title: "Create Template",
-          url: "#",
+          url: "/templates/create",
         },
       ],
     },
     {
       title: "Settings",
-      url: "#",
+      url: "/settings",
       icon: Settings,
       items: [
         {
           title: "General",
-          url: "#",
+          url: "/settings",
         },
         {
           title: "Team",
-          url: "#",
+          url: "/settings/team",
         },
         {
           title: "Billing",
-          url: "#",
+          url: "/settings/billing",
         },
       ],
     },
