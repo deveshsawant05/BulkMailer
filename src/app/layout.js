@@ -16,6 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <meta name="google-adsense-account" content="ca-pub-5370102654237228"></meta>
       <body className={`${montserrat.className} antialiased`}>
         {children}
         <SpeedInsights />
