@@ -17,7 +17,7 @@ const useCheckSession = () => {
                 setLoading(false);
             } else {
                 setLoading(false);
-                router.push('/login');
+                router.push('/auth/login');
             }
         };
 
