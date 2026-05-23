@@ -10,6 +10,14 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState(false);
+  const [mountKey, setMountKey] = useState(0);
+
+  // Force reset framer-motion and local state when page is restored from bfcache
+  useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMountKey(prev => prev + 1);
+    setIsAnimating(false);
+  }, []);
 
   // thanks for the fix Julian - https://github.com/Julian-AT
   const startAnimation = useCallback(() => {
@@ -19,14 +27,17 @@ export const FlipWords = ({
   }, [currentWord, words]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!isAnimating) {
+      const timeout = setTimeout(() => {
         startAnimation();
       }, duration);
+      return () => clearTimeout(timeout);
+    }
   }, [isAnimating, duration, startAnimation]);
 
   return (
     (<AnimatePresence
+      key={mountKey}
       onExitComplete={() => {
         setIsAnimating(false);
       }}>

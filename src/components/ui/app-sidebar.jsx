@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import Image from "next/image"
 import {
   Mail,
   Settings,
@@ -35,7 +36,7 @@ const data = {
   teams: [
     {
       name: "BulkMailer",
-      logo : ()=>{BulkMailerSvg()},
+      logo : ()=>{return <BulkMailerSvg />},
     },
   ],
   navMain: [
@@ -81,7 +82,7 @@ const data = {
         },
         {
           title: "Create Template",
-          url: "/templates/create",
+          url: "/templates/new",
         },
       ],
     },
@@ -126,6 +127,6 @@ export function AppSidebar({ ...props }) {
 
 function BulkMailerSvg() {
   return (
-    <img src="./BulkMailer.svg" alt="BulkMailer Logo" />
+    <Image src="/BulkMailer.svg" alt="BulkMailer Logo" width={24} height={24} />
   )
 }

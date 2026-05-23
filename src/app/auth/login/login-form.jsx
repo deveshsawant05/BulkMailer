@@ -1,4 +1,6 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import {
@@ -11,37 +13,44 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { login, signInWithGoogle } from "./actions";
-import { permanentRedirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { createClient } from "@/utils/supabase/client";
 import { PrimaryLoader, ButtonLoader } from "@/components/global/loader";
 
 
 export function LoginForm({ className, setVerificationRequired,setVerifyEmail,...props }) {
-  const [loading, setLoading] = useState(true);
   const [loginLoading, setLoginLoading] = useState(false);
   const router = useRouter();
   const supabase = createClient();
+
   useEffect(() => {
+    let isMounted = true;
+
     const checkSession = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-      if (error) {
-        console.error("Error fetching session:", error);
-        return;
-      }
-      if (session) {
-        // Redirect to dashboard if the user is already logged in
-        permanentRedirect("/dashboard");
-      } else {
-        setLoading(false);
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        
+        if (!isMounted) return;
+
+        if (session) {
+          // Fallback client side redirect
+          router.replace("/dashboard");
+        }
+      } catch (err) {
+        if (!isMounted) return;
+        console.error("Unexpected error checking session:", err);
       }
     };
 
     checkSession();
-  }, [router]);
+
+    return () => {
+      isMounted = false;
+    };
+  }, [router, supabase]);
 
   const [loginError, setLoginError] = useState(null);
 const handleSubmit = async (e) => {
@@ -79,15 +88,6 @@ const handleSubmit = async (e) => {
     });
   };
 
-  if (loading) {
-    return (
-      <div className="w-full flex no-wrap justify-center mt-5">
-        <h2 className="font-bold">Loading</h2>
-        <PrimaryLoader />
-      </div>
-    );
-  }
-
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>
       <Card>
@@ -106,10 +106,12 @@ const handleSubmit = async (e) => {
                   className="w-full"
                   onClick={handleGoogleLogin}
                 >
-                  <img
+                  <Image
                     src="/google.svg"
                     alt="Google Logo"
-                    className="h-5 w-5 mr-2"
+                    width={20}
+                    height={20}
+                    className="mr-2"
                   />
                   Login with Google
                 </Button>
@@ -139,12 +141,12 @@ const handleSubmit = async (e) => {
                 <div className="grid gap-2">
                   <div className="flex items-center">
                     <Label htmlFor="password">Password</Label>
-                    <a
+                    <Link
                       href="/auth/forgot-password"
                       className="ml-auto text-muted-foreground text-xs underline-offset-4 hover:underline hover:text-[--primary]"
                     >
                       Forgot your password?
-                    </a>
+                    </Link>
                   </div>
                   <Input
                     id="password"
@@ -163,12 +165,12 @@ const handleSubmit = async (e) => {
               </div>
               <div className="text-center text-sm">
                 Don&apos;t have an account?{" "}
-                <a
+                <Link
                   href="/auth/signup"
                   className="underline underline-offset-4 hover:text-[--primary] duration-500 animation"
                 >
                   Sign up
-                </a>
+                </Link>
               </div>
             </form>
           </div>
@@ -176,13 +178,13 @@ const handleSubmit = async (e) => {
       </Card>
       <div className="text-balance text-center text-xs text-muted-foreground [&_a]:underline [&_a]:underline-offset-4 ">
         By clicking continue, you agree to our{" "}
-        <a className="hover:text-[--primary] animation duration-300" href="#">
+        <Link className="hover:text-[--primary] animation duration-300" href="#">
           Terms of Service
-        </a>{" "}
+        </Link>{" "}
         and{" "}
-        <a className="hover:text-[--primary] animation duration-300" href="#">
+        <Link className="hover:text-[--primary] animation duration-300" href="#">
           Privacy Policy
-        </a>
+        </Link>
         .
       </div>
     </div>

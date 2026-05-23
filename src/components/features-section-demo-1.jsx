@@ -73,13 +73,21 @@ export const Grid = ({
   pattern,
   size
 }) => {
-  const p = pattern ?? [
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-    [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
-  ];
+  const [p, setP] = React.useState(pattern ?? [
+    [7, 1], [8, 2], [9, 3], [10, 4], [11, 5]
+  ]);
+
+  React.useEffect(() => {
+    if (!pattern) {
+      setP([
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+        [Math.floor(Math.random() * 4) + 7, Math.floor(Math.random() * 6) + 1],
+      ]);
+    }
+  }, [pattern]);
   return (
     (<div
       className="pointer-events-none absolute left-1/2 top-0  -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">

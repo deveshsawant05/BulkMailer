@@ -1,15 +1,16 @@
 import React from 'react';
 import Footer from "@/components/ui/footer";
 import Logo from '@/components/logo';
+import Link from 'next/link';
 
 const TermsOfService = () => {
     return (
         <div className="flex flex-col min-h-screen">
             <header className="bg-gray-800 text-white p-4">
                 <div className="container mx-auto flex justify-between items-center">
-                    <a href="/" className="flex items-center gap-2 ms-5">
+                    <Link href="/" className="flex items-center gap-2 ms-5">
                         <Logo />
-                    </a>
+                    </Link>
                 </div>
             </header>
             <main className="flex-grow container mx-auto p-6">

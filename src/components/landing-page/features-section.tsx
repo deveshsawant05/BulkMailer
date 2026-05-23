@@ -110,11 +110,12 @@ export const SkeletonOne = () => {
       <div className="w-full  p-5  mx-auto bg-white dark:bg-neutral-900 shadow-2xl group h-full">
         <div className="flex flex-1 w-full h-full flex-col space-y-2  ">
           {/* TODO */}
-          <img
+          <Image
             src="https://ui.aceternity.com/_next/image?url=%2Flinear.webp&w=1920&q=75"
             alt="header"
             width={800}
             height={800}
+            unoptimized
             className="h-full w-full aspect-square object-cover object-left-top rounded-sm"
           />
         </div>
@@ -137,11 +138,12 @@ export const SkeletonThree = () => {
         <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
           {/* TODO */}
           <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-          <img
+          <Image
             src="https://assets.aceternity.com/fireship.jpg"
             alt="header"
             width={800}
             height={800}
+            unoptimized
             className="h-full w-full aspect-square object-cover object-center rounded-sm blur-none group-hover/image:blur-md transition-all duration-200"
           />
         </div>
@@ -161,11 +163,12 @@ export const SkeletonTwo = () => {
         <div className="flex flex-1 w-full h-full flex-col space-y-2  relative">
           {/* TODO */}
           <IconBrandYoutubeFilled className="h-20 w-20 absolute z-10 inset-0 text-red-500 m-auto " />
-          <img
+          <Image
             src="https://assets.aceternity.com/fireship.jpg"
             alt="header"
             width={800}
             height={800}
+            unoptimized
             className="h-full w-full aspect-square object-cover object-center rounded-sm blur-none group-hover/image:blur-md transition-all duration-200"
           />
         </div>

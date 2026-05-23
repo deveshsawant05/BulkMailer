@@ -17,10 +17,9 @@ import { PrimaryLoader , ButtonLoader } from "@/components/global/loader";
 import { createClient } from "@/utils/supabase/client";
 
 import { signup } from "./actions";
-import { useRouter , permanentRedirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 export function SignUpForm({ className, setEmail, setConfirmSignUp, ...props }) {
   const router = useRouter();
-  const [loading, setLoading] = useState(true);
   const [signupLoading, setSignupLoading] = useState(false);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -80,34 +79,28 @@ export function SignUpForm({ className, setEmail, setConfirmSignUp, ...props }) 
 
   const supabase = createClient();
   useEffect(() => {
+    let isMounted = true;
     const checkSession = async () => {
-      const {
-        data: { session },
-        error,
-      } = await supabase.auth.getSession();
-      if (error) {
-        console.error("Error fetching session:", error);
-        return;
-      }
-      if (session) {
-        // Redirect to dashboard if the user is already logged in
-        permanentRedirect("/dashboard");
-      } else {
-        setLoading(false);
+      try {
+        const {
+          data: { session },
+        } = await supabase.auth.getSession();
+        
+        if (!isMounted) return;
+
+        if (session) {
+          // Fallback client side redirect
+          router.replace("/dashboard");
+        }
+      } catch (err) {
+        if (!isMounted) return;
+        console.error("Unexpected error checking session:", err);
       }
     };
 
     checkSession();
-  }, [router]);
-  
-  if (loading) {
-    return (
-      <div className="w-full flex no-wrap justify-center mt-5">
-        <h2 className="font-bold">Loading</h2>
-        <PrimaryLoader />
-      </div>
-    );
-  }
+    return () => { isMounted = false; };
+  }, [router, supabase]);
 
   return (
     <div className={cn("flex flex-col gap-6", className)} {...props}>

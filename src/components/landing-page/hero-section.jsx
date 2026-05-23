@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Logo from '@/components/logo'
@@ -30,10 +31,10 @@ export default function Example() {
       <header className="absolute inset-x-0 top-0 z-50">
         <nav aria-label="Global" className="flex items-center justify-between p-6 lg:px-8">
           <div className="flex lg:flex-1">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">BulkMailer</span>
               <Logo />
-            </a>
+            </Link>
           </div>
           <div className="flex lg:hidden">
             <button
@@ -48,26 +49,26 @@ export default function Example() {
           <div className='hidden lg:inline bg-background border-opacity-50 rounded-full px-5 py-1 border border-muted-foreground shadow-lg'>
             <div className="hidden lg:flex lg:gap-x-12">
               {navigation.map((item) => (
-                <a key={item.name} href={`/${item.href}`} className="text-sm/6 font-semibold text-gray-900 hover:drop-shadow animation duration-500">
+                <Link key={item.name} href={`/${item.href}`} className="text-sm/6 font-semibold text-gray-900 hover:drop-shadow animation duration-500">
                   {item.name}
-                </a>
+                </Link>
               ))}
             </div>
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            <a href="/auth/login" className="text-sm/6 font-semibold text-gray-900 hover:drop-shadow-[0px_0px_20px_var(--primary)] animation duration-500">
+            <Link href="/auth/login" className="text-sm/6 font-semibold text-gray-900 hover:drop-shadow-[0px_0px_20px_var(--primary)] animation duration-500">
               Log In <span aria-hidden="true">&rarr;</span>
-            </a>
+            </Link>
           </div>
         </nav>
         <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="/" className="-m-1.5 p-1.5">
+              <Link href="/" className="-m-1.5 p-1.5">
                 <span className="sr-only">BulkMailer</span>
                 <Logo />
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
@@ -81,22 +82,22 @@ export default function Example() {
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
                       href={`/${item.href}`}
                       className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                     >
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
                 <div className="py-6">
-                  <a
+                  <Link
                     href="/auth/login"
                     className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   >
                     Log in
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -118,7 +119,7 @@ export default function Example() {
           />
         </div>
         <div className="mx-auto max-w-2xl py-12 sm:py-24 lg:py-28 2xl:py-44">
-          <div className="text-center">
+          <div className="text-center ">
             <h1 className="text-balance text-4xl font-bold tracking-tight text-gray-900 md:text-7xl">
               Emails Tailored for <br/>Every <FlipWords className="m-0 p-0" words={recipientTypes} />
             </h1>
@@ -126,12 +127,12 @@ export default function Example() {
               Simplify bulk email sending with personalized templates, recipient-specific attachments, and real-time performance tracking—all in a secure and intuitive platform. Perfect for businesses that value precision and professionalism.
             </p>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a href='/auth/signup'>
+              <Link href='/auth/signup'>
                 <CustomButton className="rounded-full">Get started</CustomButton>
-              </a>
-              <a href="/guides" className="text-sm/6 font-semibold text-gray-900">
+              </Link>
+              <Link href="/guides" className="text-sm/6 font-semibold text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

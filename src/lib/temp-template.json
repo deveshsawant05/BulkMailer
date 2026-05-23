@@ -1,0 +1,149 @@
+{
+  "schemaVersion": 15,
+  "templateName": "premium-welcome-email",
+  "body": {
+    "id": "body",
+    "rows": [
+      {
+        "id": "hero",
+        "cells": [1],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "24px 40px 10px",
+                  "text": "<p style='text-align:center;font-size:14px;color:#64748b;margin:0;'>{{company_name}}</p>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "10px 40px",
+                  "text": "<h1 style='text-align:center;font-size:42px;line-height:1.2;color:#0f172a;margin:0;font-weight:700;'>Welcome, {{name}}</h1>"
+                }
+              },
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "12px 60px",
+                  "text": "<p style='text-align:center;font-size:17px;line-height:1.7;color:#64748b;margin:0;'>We're excited to have you onboard. Start building beautiful campaigns with a fast and intuitive workflow.</p>"
+                }
+              },
+              {
+                "type": "button",
+                "values": {
+                  "containerPadding": "30px 40px 40px",
+                  "text": "Get Started",
+                  "href": "{{cta_url}}",
+                  "align": "center",
+                  "backgroundColor": "#2563eb",
+                  "color": "#ffffff",
+                  "borderRadius": "10px",
+                  "padding": "16px 34px"
+                }
+              }
+            ]
+          }
+        ],
+        "values": {
+          "backgroundColor": "#ffffff"
+        }
+      },
+      {
+        "id": "banner",
+        "cells": [1],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "image",
+                "values": {
+                  "src": {
+                    "url": "https://images.unsplash.com/photo-1551434678-e076c223a692?w=1200"
+                  },
+                  "textAlign": "center",
+                  "containerPadding": "0px"
+                }
+              }
+            ]
+          }
+        ],
+        "values": {
+          "backgroundColor": "#ffffff"
+        }
+      },
+      {
+        "id": "features",
+        "cells": [1, 1, 1],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "32px 20px",
+                  "text": "<h3 style='text-align:center;margin:0;'>⚡ Fast</h3><p style='text-align:center;color:#64748b;'>Launch campaigns in minutes.</p>"
+                }
+              }
+            ]
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "32px 20px",
+                  "text": "<h3 style='text-align:center;margin:0;'>🎨 Beautiful</h3><p style='text-align:center;color:#64748b;'>Use premium templates instantly.</p>"
+                }
+              }
+            ]
+          },
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "32px 20px",
+                  "text": "<h3 style='text-align:center;margin:0;'>📈 Insights</h3><p style='text-align:center;color:#64748b;'>Track opens and clicks easily.</p>"
+                }
+              }
+            ]
+          }
+        ],
+        "values": {
+          "backgroundColor": "#f8fafc"
+        }
+      },
+      {
+        "id": "footer",
+        "cells": [1],
+        "columns": [
+          {
+            "contents": [
+              {
+                "type": "text",
+                "values": {
+                  "containerPadding": "30px 40px",
+                  "text": "<p style='text-align:center;font-size:13px;color:#94a3b8;'>Made with ❤ by {{company_name}}</p>"
+                }
+              }
+            ]
+          }
+        ],
+        "values": {
+          "backgroundColor": "#ffffff"
+        }
+      }
+    ],
+    "values": {
+      "backgroundColor": "#eef2ff",
+      "contentWidth": "600px",
+      "fontFamily": {
+        "label": "Arial",
+        "value": "arial,helvetica,sans-serif"
+      }
+    }
+  }
+}

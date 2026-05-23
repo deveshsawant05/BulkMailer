@@ -1,0 +1,1929 @@
+[
+  {
+    "id": "welcome-saas",
+    "name": "Welcome Email (Premium SaaS Onboarding)",
+    "description": "Clean, modern welcoming email with clear actionable steps.",
+    "category": "Welcome",
+    "thumbnail": "https://placehold.co/400x500/0f172a/ffffff?text=SaaS+Welcome",
+    "design": {
+      "counters": {
+        "u_column": 4,
+        "u_row": 6,
+        "u_content_text": 7,
+        "u_content_button": 2,
+        "u_content_image": 2,
+        "u_content_divider": 2
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/160x44/0f172a/ffffff?text=SAAS+CO"
+                      },
+                      "textAlign": "left",
+                      "containerPadding": "24px 40px"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f172a"
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "52px 48px 0",
+                      "text": "<p style=\"font-family:Georgia,serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#94a3b8;margin:0 0 18px 0;\">Account Ready</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:40px;font-weight:700;line-height:1.15;color:#0f172a;letter-spacing:-1px;margin:0 0 20px 0;\">Welcome to your<br/>workspace, <span style=\"color:#3b82f6;\">{{name}}</span></h1><p style=\"font-family:-apple-system,'Helvetica Neue',Helvetica,sans-serif;font-size:16px;line-height:1.75;color:#64748b;margin:0 0 36px 0;\">Everything is set up and waiting for you. Let&rsquo;s get you familiar with the key things you can do from day one.</p>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#e2e8f0"
+                      }
+                    }
+                  },
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/600x220/f8fafc/94a3b8?text=Dashboard+Preview"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "0"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-steps",
+            "cells": [
+              1,
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "30px 22px",
+                      "text": "<p style=\"font-family:Georgia,serif;font-size:26px;font-weight:700;color:#3b82f6;margin:0 0 10px;\">01</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0f172a;margin:0 0 6px;\">Complete Profile</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.6;color:#64748b;margin:0;\">Add your details so teammates can find you.</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "30px 22px",
+                      "text": "<p style=\"font-family:Georgia,serif;font-size:26px;font-weight:700;color:#3b82f6;margin:0 0 10px;\">02</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0f172a;margin:0 0 6px;\">Invite Your Team</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.6;color:#64748b;margin:0;\">Collaborate better by bringing in your colleagues.</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "30px 22px",
+                      "text": "<p style=\"font-family:Georgia,serif;font-size:26px;font-weight:700;color:#3b82f6;margin:0 0 10px;\">03</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#0f172a;margin:0 0 6px;\">Launch a Project</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.6;color:#64748b;margin:0;\">Create your first project and get moving fast.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          },
+          {
+            "id": "row-cta",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "48px 48px 20px",
+                      "text": "<h2 style=\"font-family:Georgia,serif;font-size:26px;font-weight:700;color:#0f172a;text-align:center;margin:0;letter-spacing:-0.4px;\">Ready to explore?</h2>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "16px 48px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;font-weight:600;letter-spacing:0.3px;\">Open My Dashboard \u2192</span>",
+                      "href": "{{profile_link}}",
+                      "align": "center",
+                      "backgroundColor": "#3b82f6",
+                      "borderRadius": "6px",
+                      "padding": "15px 40px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-support",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.75;color:#94a3b8;text-align:center;margin:0;\">Questions? Reply to this email or visit our <a href=\"https://bulkmailer.app/help\" style=\"color:#3b82f6;text-decoration:none;font-weight:600;\">Help Centre</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px 24px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#94a3b8;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#94a3b8;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#94a3b8;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f172a"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#eef2f7",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "Your workspace is ready, {{name}}. Here's how to get started."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "SaaS Welcome"
+    }
+  },
+  {
+    "id": "newsletter-editorial",
+    "name": "Newsletter (Editorial / Modern Cards)",
+    "description": "A beautiful editorial layout for weekly curations and content.",
+    "category": "Newsletter",
+    "thumbnail": "https://placehold.co/400x500/ffffff/333333?text=Editorial+Weekly",
+    "design": {
+      "counters": {
+        "u_column": 4,
+        "u_row": 6,
+        "u_content_text": 8,
+        "u_content_button": 2,
+        "u_content_image": 3,
+        "u_content_divider": 3
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "18px 40px 10px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#a1a1aa;text-align:center;margin:0;\">{{issue_date}} &nbsp;\u00b7&nbsp; Issue #{{issue_number}}</p>"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "8px 40px 20px",
+                      "text": "<h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;letter-spacing:-0.5px;color:#18181b;text-align:center;margin:0;\">The Weekly Digest</h1>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 40px",
+                      "border": {
+                        "borderTopWidth": "2px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#18181b"
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-lead-story",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/600x300/e4e4e7/52525b?text=Featured+Article"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "0"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "30px 40px 10px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#a1a1aa;margin:0 0 12px;\">Cover Story</p><h2 style=\"font-family:Georgia,'Times New Roman',serif;font-size:28px;font-weight:700;color:#18181b;line-height:1.2;margin:0 0 14px;letter-spacing:-0.5px;\">{{lead_headline}}</h2><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.75;color:#52525b;margin:0;\">{{lead_excerpt}}</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "20px 40px 36px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;font-weight:600;letter-spacing:0.5px;\">Read the full story \u2192</span>",
+                      "href": "{{lead_article_link}}",
+                      "align": "left",
+                      "backgroundColor": "#18181b",
+                      "borderRadius": "3px",
+                      "padding": "12px 22px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-divider",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 40px",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#e4e4e7"
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-secondary",
+            "cells": [
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/260x160/f4f4f5/a1a1aa?text=Article+2"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "30px 22px 14px"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 22px 30px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a1a1aa;margin:0 0 8px;\">{{tag_2}}</p><h3 style=\"font-family:Georgia,serif;font-size:17px;font-weight:700;color:#18181b;line-height:1.3;margin:0 0 8px;letter-spacing:-0.3px;\">{{headline_2}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.65;color:#71717a;margin:0;\">{{excerpt_2}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/260x160/f4f4f5/a1a1aa?text=Article+3"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "30px 22px 14px"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 22px 30px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a1a1aa;margin:0 0 8px;\">{{tag_3}}</p><h3 style=\"font-family:Georgia,serif;font-size:17px;font-weight:700;color:#18181b;line-height:1.3;margin:0 0 8px;letter-spacing:-0.3px;\">{{headline_3}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.65;color:#71717a;margin:0;\">{{excerpt_3}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-quote",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "36px 48px",
+                      "text": "<p style=\"font-family:Georgia,'Times New Roman',serif;font-size:20px;font-style:italic;line-height:1.6;color:#18181b;text-align:center;margin:0 0 12px;\">&ldquo;{{quote_text}}&rdquo;</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a1a1aa;text-align:center;margin:0;\">\u2014 {{quote_attribution}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#fafafa"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#a1a1aa;text-align:center;margin:0;\">You are receiving this because you subscribed to BulkMailer Weekly.<br/>BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#a1a1aa;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#a1a1aa;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#18181b"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#f4f4f5",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "Issue #{{issue_number}} \u2014 {{lead_headline}}"
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Editorial Newsletter"
+    }
+  },
+  {
+    "id": "promo-sale",
+    "name": "Promo Sale (Bold eCommerce)",
+    "description": "High-impact design focused on driving immediate conversions.",
+    "category": "Promotion",
+    "thumbnail": "https://placehold.co/400x500/ef4444/ffffff?text=Flash+Sale",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 5,
+        "u_content_text": 5,
+        "u_content_button": 2,
+        "u_content_image": 1,
+        "u_content_divider": 1
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "18px 40px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-align:center;margin:0;\">BulkMailer</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0f0f"
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "64px 40px 12px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;letter-spacing:5px;text-transform:uppercase;color:#fca5a5;text-align:center;margin:0 0 16px;\">Limited Time</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:64px;font-weight:700;line-height:0.9;color:#ffffff;text-align:center;margin:0;letter-spacing:-2px;\">FLASH<br/>SALE</h1>"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 40px 10px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:22px;font-weight:700;color:#fca5a5;text-align:center;margin:0;letter-spacing:-0.3px;\">Up to {{discount_amount}} off sitewide</p>"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "10px 40px 32px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;color:rgba(255,255,255,0.5);text-align:center;margin:0;\">Offer ends {{expiry_date}} &nbsp;\u00b7&nbsp; No code needed</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "0 40px 64px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;\">Shop the Deals</span>",
+                      "href": "{{shop_link}}",
+                      "align": "center",
+                      "backgroundColor": "#ef4444",
+                      "borderRadius": "3px",
+                      "padding": "16px 48px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0f0f"
+            }
+          },
+          {
+            "id": "row-products",
+            "cells": [
+              1,
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 16px",
+                      "text": "<div style=\"background:#f5f5f5;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:12px;\"><p style=\"font-size:11px;letter-spacing:2px;color:#a3a3a3;text-align:center;\">PRODUCT</p></div><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;font-weight:600;color:#171717;margin:0 0 4px;\">{{product_1_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#ef4444;font-weight:700;margin:0;\">{{product_1_price}} <span style=\"text-decoration:line-through;color:#a3a3a3;font-weight:400;\">{{product_1_original}}</span></p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 16px",
+                      "text": "<div style=\"background:#f5f5f5;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:12px;\"><p style=\"font-size:11px;letter-spacing:2px;color:#a3a3a3;text-align:center;\">PRODUCT</p></div><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;font-weight:600;color:#171717;margin:0 0 4px;\">{{product_2_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#ef4444;font-weight:700;margin:0;\">{{product_2_price}} <span style=\"text-decoration:line-through;color:#a3a3a3;font-weight:400;\">{{product_2_original}}</span></p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 16px",
+                      "text": "<div style=\"background:#f5f5f5;aspect-ratio:1;display:flex;align-items:center;justify-content:center;margin-bottom:12px;\"><p style=\"font-size:11px;letter-spacing:2px;color:#a3a3a3;text-align:center;\">PRODUCT</p></div><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;font-weight:600;color:#171717;margin:0 0 4px;\">{{product_3_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#ef4444;font-weight:700;margin:0;\">{{product_3_price}} <span style=\"text-decoration:line-through;color:#a3a3a3;font-weight:400;\">{{product_3_original}}</span></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-code",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "30px 40px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;color:#737373;text-align:center;margin:0;\">Or use code <strong style=\"font-family:monospace;font-size:18px;color:#ef4444;letter-spacing:2px;\">{{promo_code}}</strong> at checkout.<br/><span style=\"font-size:12px;\">Valid for {{hours_valid}} hours only. While stocks last.</span></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#fafafa"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px 24px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#737373;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#a3a3a3;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#a3a3a3;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#f5f5f5",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "Up to {{discount_amount}} off \u2014 {{hours_valid}} hours only. Don't miss it."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Bold Promo"
+    }
+  },
+  {
+    "id": "event-invite",
+    "name": "Event Invite (Sleek Webinar)",
+    "description": "Professional and stylish invitation for digital or physical events.",
+    "category": "Event",
+    "thumbnail": "https://placehold.co/400x500/171717/d4d4d8?text=Webinar+Invite",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 4,
+        "u_content_text": 6,
+        "u_content_button": 1,
+        "u_content_image": 1,
+        "u_content_divider": 2
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 40px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#52525b;text-align:center;margin:0;\">BulkMailer</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#09090b"
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "52px 48px 0",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#52525b;margin:0 0 16px;\">{{event_type}}</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:36px;font-weight:700;line-height:1.2;color:#fafafa;margin:0 0 20px;letter-spacing:-0.8px;\">{{event_title}}</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.75;color:#a1a1aa;margin:0;\">{{event_description}}</p>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "36px 0 0",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#27272a"
+                      }
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 48px",
+                      "text": "<table style=\"width:100%;border-collapse:collapse;\"><tr><td style=\"padding:8px 0;vertical-align:top;\"><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin:0 0 4px;\">Date</p><p style=\"font-family:Georgia,serif;font-size:16px;color:#fafafa;margin:0;font-weight:700;\">{{event_date}}</p></td><td style=\"padding:8px 0;vertical-align:top;\"><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin:0 0 4px;\">Time</p><p style=\"font-family:Georgia,serif;font-size:16px;color:#fafafa;margin:0;font-weight:700;\">{{event_time}}</p></td><td style=\"padding:8px 0;vertical-align:top;\"><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin:0 0 4px;\">Format</p><p style=\"font-family:Georgia,serif;font-size:16px;color:#fafafa;margin:0;font-weight:700;\">{{event_format}}</p></td></tr></table>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 0 36px",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#27272a"
+                      }
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "0 48px 52px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.3px;\">Reserve My Spot \u2192</span>",
+                      "href": "{{registration_link}}",
+                      "align": "left",
+                      "backgroundColor": "#ffffff",
+                      "borderRadius": "4px",
+                      "padding": "14px 28px",
+                      "color": "#09090b"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#09090b"
+            }
+          },
+          {
+            "id": "row-speakers",
+            "cells": [
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 24px",
+                      "text": "<div style=\"width:48px;height:48px;border-radius:50%;background:#27272a;margin:0 0 12px;\"></div><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin:0 0 4px;\">Speaker</p><p style=\"font-family:Georgia,serif;font-size:15px;font-weight:700;color:#fafafa;margin:0 0 4px;\">{{speaker_1_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#71717a;margin:0;\">{{speaker_1_title}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 24px",
+                      "text": "<div style=\"width:48px;height:48px;border-radius:50%;background:#27272a;margin:0 0 12px;\"></div><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin:0 0 4px;\">Speaker</p><p style=\"font-family:Georgia,serif;font-size:15px;font-weight:700;color:#fafafa;margin:0 0 4px;\">{{speaker_2_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#71717a;margin:0;\">{{speaker_2_title}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#09090b"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#52525b;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#52525b;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#52525b;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#09090b"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#000000",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "You're invited \u2014 {{event_title}} on {{event_date}}."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Event Invite"
+    }
+  },
+  {
+    "id": "re-engagement",
+    "name": "Re-engagement (Persuasive Comeback)",
+    "description": "Emotionally driven design to win back inactive users.",
+    "category": "Retention",
+    "thumbnail": "https://placehold.co/400x500/fdf2f8/db2777?text=We+Miss+You",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 4,
+        "u_content_text": 5,
+        "u_content_button": 1,
+        "u_content_image": 1,
+        "u_content_divider": 1
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 40px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#f9a8d4;text-align:center;margin:0;\">BulkMailer</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#831843"
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "56px 48px 20px",
+                      "text": "<p style=\"font-family:Georgia,'Times New Roman',serif;font-size:52px;text-align:center;margin:0 0 24px;\">\u2661</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:36px;font-weight:700;line-height:1.2;color:#1f2937;text-align:center;margin:0 0 20px;letter-spacing:-0.8px;\">We've missed you,<br/><span style=\"color:#db2777;\">{{first_name}}</span></h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.75;color:#6b7280;text-align:center;margin:0;\">It's been a while. Here's what you&rsquo;ve been missing \u2014 and a little something to welcome you back.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-updates",
+            "cells": [
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 22px",
+                      "text": "<p style=\"font-size:22px;margin:0 0 10px;\">\u2728</p><h3 style=\"font-family:Georgia,serif;font-size:15px;font-weight:700;color:#111827;margin:0 0 8px;\">{{update_1_title}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.65;color:#6b7280;margin:0;\">{{update_1_description}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 22px",
+                      "text": "<p style=\"font-size:22px;margin:0 0 10px;\">\ud83d\ude80</p><h3 style=\"font-family:Georgia,serif;font-size:15px;font-weight:700;color:#111827;margin:0 0 8px;\">{{update_2_title}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;line-height:1.65;color:#6b7280;margin:0;\">{{update_2_description}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#fff1f2"
+            }
+          },
+          {
+            "id": "row-cta",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "40px 48px 16px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;text-align:center;color:#6b7280;margin:0;\">Here&rsquo;s a special offer, just for you:<br/><span style=\"font-family:monospace;font-size:20px;font-weight:700;color:#db2777;letter-spacing:2px;\">{{comeback_code}}</span>&nbsp;&mdash;&nbsp;<strong style=\"color:#111827;\">{{discount_percent}}% off</strong> your next order.</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "20px 48px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;font-weight:600;\">Come Back &amp; Explore \u2192</span>",
+                      "href": "{{updates_link}}",
+                      "align": "center",
+                      "backgroundColor": "#db2777",
+                      "borderRadius": "30px",
+                      "padding": "15px 36px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#9ca3af;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#9ca3af;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#9ca3af;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f9fafb"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#f9fafb",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "{{first_name}}, we've missed you. Here's {{discount_percent}}% off to welcome you back."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Comeback Email"
+    }
+  },
+  {
+    "id": "order-confirmation",
+    "name": "Order Confirmation (Clean Transactional)",
+    "description": "Clear, trust-building order receipt with item summary and shipping details.",
+    "category": "Transactional",
+    "thumbnail": "https://placehold.co/400x500/f0fdf4/16a34a?text=Order+Confirmed",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 6,
+        "u_content_text": 8,
+        "u_content_button": 1,
+        "u_content_image": 1,
+        "u_content_divider": 3
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/160x44/ffffff/1a1a1a?text=YOUR+LOGO"
+                      },
+                      "textAlign": "left",
+                      "containerPadding": "22px 40px"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "border": {
+                "borderBottomWidth": "2px",
+                "borderBottomStyle": "solid",
+                "borderBottomColor": "#f0fdf4"
+              }
+            }
+          },
+          {
+            "id": "row-status",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "40px 48px",
+                      "text": "<p style=\"font-size:40px;text-align:center;margin:0 0 16px;\">\u2713</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:700;color:#14532d;text-align:center;margin:0 0 10px;letter-spacing:-0.5px;\">Order Confirmed</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;color:#166534;text-align:center;margin:0;\">Thank you, <strong>{{customer_name}}</strong>. Your order <strong>#{{order_number}}</strong> is confirmed.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f0fdf4"
+            }
+          },
+          {
+            "id": "row-items",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "36px 48px 0",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#94a3b8;margin:0 0 16px;\">Order Summary</p>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 48px",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#e2e8f0"
+                      }
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 48px",
+                      "text": "<table style=\"width:100%;border-collapse:collapse;font-family:-apple-system,'Helvetica Neue',sans-serif;\"><tr style=\"border-bottom:1px solid #f1f5f9;\"><td style=\"padding:14px 0;font-size:14px;color:#334155;\">{{item_1_name}}<br/><span style=\"font-size:12px;color:#94a3b8;\">Qty: {{item_1_qty}}</span></td><td style=\"padding:14px 0;font-size:14px;color:#0f172a;font-weight:600;text-align:right;\">{{item_1_price}}</td></tr><tr style=\"border-bottom:1px solid #f1f5f9;\"><td style=\"padding:14px 0;font-size:14px;color:#334155;\">{{item_2_name}}<br/><span style=\"font-size:12px;color:#94a3b8;\">Qty: {{item_2_qty}}</span></td><td style=\"padding:14px 0;font-size:14px;color:#0f172a;font-weight:600;text-align:right;\">{{item_2_price}}</td></tr><tr><td style=\"padding:14px 0;font-size:14px;color:#94a3b8;\">Shipping</td><td style=\"padding:14px 0;font-size:14px;color:#0f172a;text-align:right;\">{{shipping_cost}}</td></tr></table>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 48px",
+                      "border": {
+                        "borderTopWidth": "2px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#0f172a"
+                      }
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 48px 36px",
+                      "text": "<table style=\"width:100%;font-family:-apple-system,'Helvetica Neue',sans-serif;\"><tr><td style=\"padding:14px 0;font-size:15px;font-weight:700;color:#0f172a;\">Total</td><td style=\"padding:14px 0;font-size:18px;font-weight:700;color:#0f172a;text-align:right;\">{{order_total}}</td></tr></table>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-shipping",
+            "cells": [
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 22px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#94a3b8;margin:0 0 8px;\">Ship To</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;line-height:1.65;color:#334155;margin:0;\">{{shipping_name}}<br/>{{shipping_address}}<br/>{{shipping_city}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "24px 22px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#94a3b8;margin:0 0 8px;\">Est. Delivery</p><p style=\"font-family:Georgia,serif;font-size:18px;font-weight:700;color:#0f172a;margin:0 0 4px;\">{{delivery_date}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#94a3b8;margin:0;\">via {{shipping_carrier}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          },
+          {
+            "id": "row-cta",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "32px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;\">Track My Order \u2192</span>",
+                      "href": "{{tracking_url}}",
+                      "align": "center",
+                      "backgroundColor": "#16a34a",
+                      "borderRadius": "6px",
+                      "padding": "14px 36px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#94a3b8;text-align:center;margin:0;\">Questions about your order? Contact <a href=\"mailto:support@bulkmailer.app\" style=\"color:#16a34a;text-decoration:none;\">support@bulkmailer.app</a><br/>BulkMailer, Pune, Maharashtra, India</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#eef2f7",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "Order #{{order_number}} confirmed. Estimated delivery: {{delivery_date}}."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Order Confirmation"
+    }
+  },
+  {
+    "id": "product-launch",
+    "name": "Product Launch (Feature Announcement)",
+    "description": "A bold, energetic announcement for new features or product releases.",
+    "category": "Announcement",
+    "thumbnail": "https://placehold.co/400x500/1e1b4b/818cf8?text=New+Launch",
+    "design": {
+      "counters": {
+        "u_column": 4,
+        "u_row": 5,
+        "u_content_text": 7,
+        "u_content_button": 2,
+        "u_content_image": 2,
+        "u_content_divider": 1
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 40px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#818cf8;text-align:center;margin:0;\">BulkMailer</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0e17"
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/600x280/1e1b4b/818cf8?text=New+Feature+Preview"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "0"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "44px 48px 0",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#818cf8;margin:0 0 16px;\">Now Live</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:40px;font-weight:700;line-height:1.15;color:#f8fafc;margin:0 0 20px;letter-spacing:-1px;\">{{feature_name}}<br/>is here.</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:16px;line-height:1.75;color:#94a3b8;margin:0;\">{{feature_description}}</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "32px 48px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;letter-spacing:0.3px;\">Try {{feature_name}} Now \u2192</span>",
+                      "href": "{{feature_url}}",
+                      "align": "left",
+                      "backgroundColor": "#6366f1",
+                      "borderRadius": "6px",
+                      "padding": "14px 32px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0e17"
+            }
+          },
+          {
+            "id": "row-highlights",
+            "cells": [
+              1,
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 20px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:22px;margin:0 0 10px;\">\u26a1</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#f1f5f9;margin:0 0 6px;\">{{highlight_1_title}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;line-height:1.6;color:#64748b;margin:0;\">{{highlight_1_body}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 20px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:22px;margin:0 0 10px;\">\ud83d\udd12</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#f1f5f9;margin:0 0 6px;\">{{highlight_2_title}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;line-height:1.6;color:#64748b;margin:0;\">{{highlight_2_body}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "28px 20px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:22px;margin:0 0 10px;\">\ud83d\udcc8</p><h3 style=\"font-family:Georgia,serif;font-size:14px;font-weight:700;color:#f1f5f9;margin:0 0 6px;\">{{highlight_3_title}}</h3><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;line-height:1.6;color:#64748b;margin:0;\">{{highlight_3_body}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0e17"
+            }
+          },
+          {
+            "id": "row-social-proof",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "36px 48px",
+                      "text": "<p style=\"font-family:Georgia,'Times New Roman',serif;font-size:19px;font-style:italic;line-height:1.6;color:#18181b;text-align:center;margin:0 0 12px;\">&ldquo;{{testimonial_quote}}&rdquo;</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#a1a1aa;text-align:center;margin:0;\">\u2014 {{testimonial_name}}, {{testimonial_company}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#fafafa"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px 24px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#52525b;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#52525b;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#52525b;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#0f0e17"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#0f0e17",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "{{feature_name}} is now live \u2014 {{feature_description}}"
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Product Launch"
+    }
+  },
+  {
+    "id": "abandoned-cart",
+    "name": "Abandoned Cart (Recovery)",
+    "description": "Urgency-driven cart recovery email with product preview and incentive.",
+    "category": "eCommerce",
+    "thumbnail": "https://placehold.co/400x500/fff7ed/ea580c?text=Left+Something",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 5,
+        "u_content_text": 6,
+        "u_content_button": 2,
+        "u_content_image": 2,
+        "u_content_divider": 1
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/160x44/ffffff/1a1a1a?text=YOUR+LOGO"
+                      },
+                      "textAlign": "left",
+                      "containerPadding": "22px 40px"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "border": {
+                "borderBottomWidth": "1px",
+                "borderBottomStyle": "solid",
+                "borderBottomColor": "#fee2e2"
+              }
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "52px 48px 36px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:32px;text-align:center;margin:0 0 20px;\">\ud83d\uded2</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:34px;font-weight:700;line-height:1.2;color:#0f172a;text-align:center;margin:0 0 16px;letter-spacing:-0.8px;\">You left something<br/>behind, {{first_name}}</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.75;color:#64748b;text-align:center;margin:0;\">Your cart is waiting. These items are popular and may sell out soon.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-cart-items",
+            "cells": [
+              1,
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/240x200/f5f5f5/a3a3a3?text=Product"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "0 16px 12px"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 22px 24px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;color:#0f172a;margin:0 0 4px;\">{{cart_item_1_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;color:#64748b;margin:0 0 6px;\">{{cart_item_1_variant}}</p><p style=\"font-family:Georgia,serif;font-size:18px;font-weight:700;color:#ea580c;margin:0;\">{{cart_item_1_price}}</p>"
+                    }
+                  }
+                ]
+              },
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/240x200/f5f5f5/a3a3a3?text=Product"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "0 16px 12px"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "0 22px 24px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;color:#0f172a;margin:0 0 4px;\">{{cart_item_2_name}}</p><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;color:#64748b;margin:0 0 6px;\">{{cart_item_2_variant}}</p><p style=\"font-family:Georgia,serif;font-size:18px;font-weight:700;color:#ea580c;margin:0;\">{{cart_item_2_price}}</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#fff7ed"
+            }
+          },
+          {
+            "id": "row-cta",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "36px 48px 16px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;text-align:center;color:#64748b;margin:0;\">Use code <strong style=\"font-family:monospace;font-size:16px;color:#ea580c;letter-spacing:2px;\">{{cart_code}}</strong> for <strong style=\"color:#0f172a;\">{{cart_discount}}</strong> off your order.</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "16px 48px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;font-weight:600;\">Complete My Purchase \u2192</span>",
+                      "href": "{{cart_url}}",
+                      "align": "center",
+                      "backgroundColor": "#ea580c",
+                      "borderRadius": "6px",
+                      "padding": "15px 40px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#94a3b8;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#94a3b8;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#94a3b8;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#eef2f7",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "{{first_name}}, your cart is about to expire. Complete your order before it's gone."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Abandoned Cart"
+    }
+  },
+  {
+    "id": "password-reset",
+    "name": "Password Reset (Secure & Clear)",
+    "description": "Minimal, trustworthy design for security-critical transactional emails.",
+    "category": "Transactional",
+    "thumbnail": "https://placehold.co/400x500/eff6ff/2563eb?text=Reset+Password",
+    "design": {
+      "counters": {
+        "u_column": 2,
+        "u_row": 4,
+        "u_content_text": 5,
+        "u_content_button": 1,
+        "u_content_image": 1,
+        "u_content_divider": 2
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/160x44/ffffff/1a1a1a?text=YOUR+LOGO"
+                      },
+                      "textAlign": "center",
+                      "containerPadding": "24px 40px"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "border": {
+                "borderBottomWidth": "1px",
+                "borderBottomStyle": "solid",
+                "borderBottomColor": "#e2e8f0"
+              }
+            }
+          },
+          {
+            "id": "row-body",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "52px 56px 20px",
+                      "text": "<p style=\"font-size:36px;text-align:center;margin:0 0 20px;\">\ud83d\udd10</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:30px;font-weight:700;color:#0f172a;text-align:center;margin:0 0 16px;letter-spacing:-0.5px;\">Reset Your Password</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.75;color:#64748b;text-align:center;margin:0;\">Hi <strong style=\"color:#0f172a;\">{{name}}</strong>, we received a request to reset the password for your account. Click the button below to choose a new password.</p>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "28px 56px 16px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;font-weight:600;\">Reset My Password</span>",
+                      "href": "{{reset_url}}",
+                      "align": "center",
+                      "backgroundColor": "#2563eb",
+                      "borderRadius": "6px",
+                      "padding": "15px 40px",
+                      "color": "#ffffff"
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "10px 56px 36px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;color:#94a3b8;text-align:center;margin:0;\">This link expires in <strong>{{expiry_hours}} hours</strong>. If you did not request a reset, you can safely ignore this email.</p>"
+                    }
+                  },
+                  {
+                    "type": "divider",
+                    "values": {
+                      "containerPadding": "0 56px",
+                      "border": {
+                        "borderTopWidth": "1px",
+                        "borderTopStyle": "solid",
+                        "borderTopColor": "#e2e8f0"
+                      }
+                    }
+                  },
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 56px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;line-height:1.7;color:#94a3b8;text-align:center;margin:0;\">If the button above doesn&rsquo;t work, copy and paste this URL into your browser:<br/><a href=\"{{reset_url}}\" style=\"color:#2563eb;word-break:break-all;font-size:11px;\">{{reset_url}}</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-security",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:12px;line-height:1.7;color:#64748b;text-align:center;margin:0;\"><strong style=\"color:#0f172a;\">Security tip:</strong> BulkMailer will never ask for your password via email.<br/>If you&rsquo;re unsure, contact us at <a href=\"mailto:support@bulkmailer.app\" style=\"color:#2563eb;text-decoration:none;\">support@bulkmailer.app</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#eff6ff"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#94a3b8;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/>This is an automated security email &mdash; please do not reply.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#eef2f7",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "Reset your password \u2014 this link expires in {{expiry_hours}} hours."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Password Reset"
+    }
+  },
+  {
+    "id": "survey-feedback",
+    "name": "Feedback & Survey Request",
+    "description": "Friendly, low-friction survey request to collect customer insights.",
+    "category": "Engagement",
+    "thumbnail": "https://placehold.co/400x500/faf5ff/7c3aed?text=Share+Feedback",
+    "design": {
+      "counters": {
+        "u_column": 3,
+        "u_row": 4,
+        "u_content_text": 5,
+        "u_content_button": 3,
+        "u_content_image": 1,
+        "u_content_divider": 1
+      },
+      "body": {
+        "id": "body",
+        "rows": [
+          {
+            "id": "row-header",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "image",
+                    "values": {
+                      "src": {
+                        "url": "https://placehold.co/160x44/ffffff/1a1a1a?text=YOUR+LOGO"
+                      },
+                      "textAlign": "left",
+                      "containerPadding": "22px 40px"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff",
+              "border": {
+                "borderBottomWidth": "1px",
+                "borderBottomStyle": "solid",
+                "borderBottomColor": "#ede9fe"
+              }
+            }
+          },
+          {
+            "id": "row-hero",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "52px 48px 36px",
+                      "text": "<p style=\"font-size:40px;text-align:center;margin:0 0 20px;\">\ud83d\udcac</p><h1 style=\"font-family:Georgia,'Times New Roman',serif;font-size:32px;font-weight:700;line-height:1.2;color:#1e1b4b;text-align:center;margin:0 0 16px;letter-spacing:-0.5px;\">How was your experience,<br/><span style=\"color:#7c3aed;\">{{first_name}}</span>?</h1><p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:15px;line-height:1.75;color:#6b7280;text-align:center;margin:0;\">Your feedback shapes how we build. It only takes <strong style=\"color:#1e1b4b;\">{{survey_duration}}</strong> &mdash; we promise.</p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#ffffff"
+            }
+          },
+          {
+            "id": "row-rating",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "32px 48px 16px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:13px;letter-spacing:2px;text-transform:uppercase;color:#9ca3af;text-align:center;margin:0 0 20px;\">Rate your experience</p><table style=\"width:100%;max-width:320px;margin:0 auto;border-collapse:separate;border-spacing:8px;\"><tr><td style=\"text-align:center;\"><a href=\"{{rating_1_url}}\" style=\"display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;border:2px solid #e5e7eb;text-align:center;font-size:20px;text-decoration:none;\">\ud83d\ude1e</a></td><td style=\"text-align:center;\"><a href=\"{{rating_2_url}}\" style=\"display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;border:2px solid #e5e7eb;text-align:center;font-size:20px;text-decoration:none;\">\ud83d\ude10</a></td><td style=\"text-align:center;\"><a href=\"{{rating_3_url}}\" style=\"display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;border:2px solid #e5e7eb;text-align:center;font-size:20px;text-decoration:none;\">\ud83d\ude42</a></td><td style=\"text-align:center;\"><a href=\"{{rating_4_url}}\" style=\"display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;border:2px solid #e5e7eb;text-align:center;font-size:20px;text-decoration:none;\">\ud83d\ude01</a></td><td style=\"text-align:center;\"><a href=\"{{rating_5_url}}\" style=\"display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;border:2px solid #7c3aed;background:#faf5ff;text-align:center;font-size:20px;text-decoration:none;\">\ud83e\udd29</a></td></tr></table>"
+                    }
+                  },
+                  {
+                    "type": "button",
+                    "values": {
+                      "containerPadding": "28px 48px 48px",
+                      "text": "<span style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:14px;font-weight:600;\">Take the Full Survey \u2192</span>",
+                      "href": "{{survey_url}}",
+                      "align": "center",
+                      "backgroundColor": "#7c3aed",
+                      "borderRadius": "6px",
+                      "padding": "14px 36px",
+                      "color": "#ffffff"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#faf5ff"
+            }
+          },
+          {
+            "id": "row-footer",
+            "cells": [
+              1
+            ],
+            "columns": [
+              {
+                "contents": [
+                  {
+                    "type": "text",
+                    "values": {
+                      "containerPadding": "20px 48px",
+                      "text": "<p style=\"font-family:-apple-system,'Helvetica Neue',sans-serif;font-size:11px;line-height:1.85;color:#94a3b8;text-align:center;margin:0;\">BulkMailer, Pune, Maharashtra, India<br/><a href=\"https://bulkmailer.app/unsubscribe\" style=\"color:#94a3b8;text-decoration:underline;\">Unsubscribe</a>&nbsp;\u2022&nbsp;<a href=\"https://bulkmailer.app/preferences\" style=\"color:#94a3b8;text-decoration:underline;\">Manage Preferences</a></p>"
+                    }
+                  }
+                ]
+              }
+            ],
+            "values": {
+              "backgroundColor": "#f8fafc"
+            }
+          }
+        ],
+        "values": {
+          "backgroundColor": "#eef2f7",
+          "contentWidth": "600px",
+          "fontFamily": {
+            "label": "Helvetica Neue",
+            "value": "-apple-system,'Helvetica Neue',Helvetica,Arial,sans-serif"
+          },
+          "preheaderText": "{{first_name}}, how was your experience? It only takes {{survey_duration}}."
+        }
+      },
+      "schemaVersion": 15,
+      "templateName": "Feedback Survey"
+    }
+  }
+]
