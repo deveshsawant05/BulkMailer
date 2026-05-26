@@ -6,13 +6,17 @@ export function cn(...inputs) {
 }
 
 export function extractVariables(input = "") {
-  const content = stripUnlayerDesignMetadata(input);
-
-  if (typeof content !== "string" || content.length === 0) {
+  if (typeof input !== "string" || input.length === 0) {
     return [];
   }
 
-  const matches = content.matchAll(/{{\s*([A-Za-z0-9_]+)\s*}}/g);
+  const design = extractUnlayerDesignMetadata(input);
+  const designString = design ? JSON.stringify(design) : "";
+  const htmlContent = stripUnlayerDesignMetadata(input);
+  
+  const contentToSearch = `${htmlContent}\n${designString}`;
+  
+  const matches = contentToSearch.matchAll(/{{\s*([A-Za-z0-9_]+)\s*}}/g);
 
   return Array.from(new Set(Array.from(matches, (match) => match[1])));
 }
@@ -26,6 +30,33 @@ export function stripUnlayerDesignMetadata(input = "") {
   }
 
   return input.replace(unlayerDesignMetadataRegex, "");
+}
+
+const unlayerVariablesMetadataRegex =
+  /<!--\s*bulkmailer-variables:([\s\S]*?)\s*-->\s*/;
+
+export function stripUnlayerVariablesMetadata(input = "") {
+  if (typeof input !== "string") return "";
+  return input.replace(unlayerVariablesMetadataRegex, "");
+}
+
+export function extractUnlayerVariablesMetadata(input = "") {
+  if (typeof input !== "string") return [];
+  const match = input.match(unlayerVariablesMetadataRegex);
+  if (!match?.[1]) return [];
+  try {
+    return JSON.parse(decodeURIComponent(match[1].trim()));
+  } catch {
+    return [];
+  }
+}
+
+export function attachUnlayerVariablesMetadata(html = "", variables = []) {
+  const cleanHtml = stripUnlayerVariablesMetadata(html);
+  if (!variables || variables.length === 0) return cleanHtml;
+  return `<!-- bulkmailer-variables:${encodeURIComponent(
+    JSON.stringify(variables)
+  )} -->\n${cleanHtml}`;
 }
 
 export function extractUnlayerDesignMetadata(input = "") {

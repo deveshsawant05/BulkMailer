@@ -25,6 +25,7 @@ import {
   SidebarHeader,
   SidebarRail,
 } from "@/components/ui/sidebar"
+import useCheckSession from "@/hooks/check-session"
 
 // This is sample data.
 const data = {
@@ -109,6 +110,14 @@ const data = {
 }
 
 export function AppSidebar({ ...props }) {
+  const { user } = useCheckSession();
+
+  const activeUser = user ? {
+    name: user.user_metadata?.full_name || user.user_metadata?.name || user.email?.split('@')[0] || "User",
+    email: user.email || "",
+    avatar: user.user_metadata?.avatar_url || `https://api.dicebear.com/7.x/initials/svg?seed=${user.email}`,
+  } : data.user;
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
@@ -118,7 +127,7 @@ export function AppSidebar({ ...props }) {
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        <NavUser user={activeUser} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>

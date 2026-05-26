@@ -1,10 +1,10 @@
 "use client";
 
-import { useMemo, useRef, useState, useCallback } from "react";
+import { useMemo, useRef, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
-  Loader2, Save, Plus, X, GripVertical,
-  Settings2, Variable, Mail, Copy, Check, MousePointerClick
+  Loader2, Save,
+  Settings2, Mail, Maximize, Minimize, Plus, Trash2, Tag
 } from "lucide-react";
 
 import { createTemplate, updateTemplate } from "@/app/actions/templates";
@@ -15,97 +15,39 @@ import { Label } from "@/components/ui/label";
 import {
   attachUnlayerDesignMetadata,
   extractUnlayerDesignMetadata,
+  attachUnlayerVariablesMetadata,
+  extractUnlayerVariablesMetadata,
   extractVariables,
-  stripUnlayerDesignMetadata,
 } from "@/lib/utils";
 
 export default function TemplateForm({ template = null }) {
   const router = useRouter();
   const emailBuilderRef = useRef(null);
-  const activeInputRef = useRef(null); // tracks last-focused text input
   const [isSaving, setIsSaving] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
   const [isBuilderReady, setIsBuilderReady] = useState(false);
   const [error, setError] = useState("");
   const [name, setName] = useState(template?.name ?? "");
   const [description, setDescription] = useState(template?.description ?? "");
   const [subjectTemplate, setSubjectTemplate] = useState(template?.subject_template ?? "");
-  const [bodyTemplate, setBodyTemplate] = useState(
-    stripUnlayerDesignMetadata(template?.body_template ?? "")
-  );
-  const [customVariables, setCustomVariables] = useState(() =>
-    extractVariables(`${template?.subject_template ?? ""}\n${template?.body_template ?? ""}`)
-  );
-  const [newVarName, setNewVarName] = useState("");
-  const [copiedVar, setCopiedVar] = useState(null);
+  const [bodyTemplate, setBodyTemplate] = useState(template?.body_template ?? "");
+  
+  const initialDesign = useMemo(() => {
+    if (template?.design) return template.design;
+    return extractUnlayerDesignMetadata(template?.body_template ?? "");
+  }, [template]);
 
-  const initialDesign = useMemo(
-    () => extractUnlayerDesignMetadata(template?.body_template ?? ""),
-    [template?.body_template]
-  );
-
-  const variables = useMemo(() => {
-    const extracted = extractVariables(`${subjectTemplate}\n${bodyTemplate}`);
-    return Array.from(new Set([...customVariables, ...extracted]));
-  }, [subjectTemplate, bodyTemplate, customVariables]);
-
-  const addCustomVariable = () => {
-    const clean = newVarName.trim();
-    if (clean && !customVariables.includes(clean)) {
-      setCustomVariables((prev) => [...prev, clean]);
-      setNewVarName("");
+  const initialVariables = useMemo(() => {
+    let vars = extractUnlayerVariablesMetadata(template?.body_template ?? "");
+    if (!vars || vars.length === 0) {
+      const designString = initialDesign ? JSON.stringify(initialDesign) : template?.body_template ?? "";
+      const matches = designString.matchAll(/{{\s*([A-Za-z0-9_]+)\s*}}/g);
+      vars = Array.from(new Set(Array.from(matches, (match) => match[1]))).map(v => `{{${v}}}`);
     }
-  };
-
-  const removeVariable = (v) => {
-    setCustomVariables((prev) => prev.filter((c) => c !== v));
-  };
-
-  // ─── Variable insertion strategy ───────────────────────────────────────────
-  // Unlayer runs inside an <iframe> — native HTML5 drag events cannot cross
-  // the frame boundary. The approach here is:
-  //   1. If a regular text <input> is focused (name / description / subject),
-  //      clicking a variable inserts {{Var}} at the cursor position in that input.
-  //   2. If no input is focused (user is working inside Unlayer), clicking a
-  //      variable copies {{Var}} to the clipboard AND calls the builder's
-  //      insertText() method which uses Unlayer's internal `editor.execute('paste')`
-  //      via postMessage to inject the text into the currently selected block.
-  // ───────────────────────────────────────────────────────────────────────────
-
-  const handleVariableClick = useCallback((variable) => {
-    const tag = `{{${variable}}}`;
-
-    // 1. Try inserting into the last-focused native input
-    const input = activeInputRef.current;
-    if (input && document.contains(input)) {
-      const start = input.selectionStart ?? input.value.length;
-      const end = input.selectionEnd ?? input.value.length;
-      const before = input.value.slice(0, start);
-      const after = input.value.slice(end);
-      const newValue = before + tag + after;
-
-      // Update react state for whichever field is focused
-      const id = input.id;
-      if (id === "subject-template") setSubjectTemplate(newValue);
-      else if (id === "template-name") setName(newValue);
-      else if (id === "template-description") setDescription(newValue);
-
-      // Restore cursor position after react re-render
-      requestAnimationFrame(() => {
-        input.focus();
-        const pos = start + tag.length;
-        input.setSelectionRange(pos, pos);
-      });
-      return;
-    }
-
-    // 2. Try inserting into Unlayer via the builder's insertText method
-    const inserted = emailBuilderRef.current?.insertText?.(tag);
-
-    // 3. Always copy to clipboard as the reliable fallback
-    navigator.clipboard.writeText(tag).catch(() => {});
-    setCopiedVar(variable);
-    setTimeout(() => setCopiedVar(null), 1800);
-  }, []);
+    return vars;
+  }, [template, initialDesign]);
+  
+  const [variables, setVariables] = useState(initialVariables.length ? initialVariables : []);
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -119,11 +61,16 @@ export default function TemplateForm({ template = null }) {
     setIsSaving(true);
     try {
       const exported = await emailBuilderRef.current.exportTemplate();
+      
+      // Merge HTML with both design and variables metadata
+      let finalHtml = attachUnlayerDesignMetadata(exported.html, exported.design);
+      finalHtml = attachUnlayerVariablesMetadata(finalHtml, variables);
+      
       const payload = {
         name,
         description,
         subject_template: subjectTemplate,
-        body_template: attachUnlayerDesignMetadata(exported.html, exported.design),
+        body_template: finalHtml,
       };
 
       const result = template?.id
@@ -144,27 +91,40 @@ export default function TemplateForm({ template = null }) {
     }
   }
 
-  // Track which native input the user last focused
-  const trackFocus = (e) => { activeInputRef.current = e.target; };
-  const clearFocus = (e) => {
-    // Only clear if focus left our inputs entirely (not just tab-between)
-    setTimeout(() => {
-      if (!document.activeElement || !["template-name","template-description","subject-template"].includes(document.activeElement.id)) {
-        // Keep the ref so variable click can still insert after blur
+  // Block scroll when fullscreen
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullscreen]);
+
+  // Auto-detect variables from the email editor content
+  useEffect(() => {
+    if (bodyTemplate) {
+      const extracted = extractVariables(bodyTemplate).map(v => `{{${v}}}`);
+      if (extracted.length > 0) {
+        setVariables(prev => {
+          const newVars = Array.from(new Set([...prev, ...extracted]));
+          if (newVars.length !== prev.length) return newVars;
+          return prev;
+        });
       }
-    }, 100);
-  };
+    }
+  }, [bodyTemplate]);
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col xl:flex-row gap-5 w-full items-start">
+    <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full items-start">
 
-      {/* ══════════════════════════════
-          LEFT COLUMN — Config + Editor
-         ══════════════════════════════ */}
-      <div className="flex-1 flex flex-col gap-4 min-w-0 order-2 xl:order-1">
-
-        {/* ── Config card (compact single row) ── */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
+      {/* ── Top Row: Config + Actions ── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        
+        {/* Config card */}
+        <div className="lg:col-span-2 bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col">
           <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-800/30">
             <div className="w-6 h-6 rounded-lg bg-blue-600 flex items-center justify-center">
               <Settings2 className="w-3 h-3 text-white" />
@@ -173,9 +133,8 @@ export default function TemplateForm({ template = null }) {
             <span className="text-xs text-zinc-400 dark:text-zinc-500 ml-1">— name, description & subject</span>
           </div>
 
-          <div className="p-5 grid grid-cols-1 sm:grid-cols-12 gap-4">
-            {/* Name */}
-            <div className="flex flex-col gap-1.5 sm:col-span-4">
+          <div className="p-5 flex flex-col gap-5 flex-1">
+            <div className="flex flex-col gap-1.5">
               <Label htmlFor="template-name" className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
                 Name <span className="text-red-500">*</span>
               </Label>
@@ -183,16 +142,13 @@ export default function TemplateForm({ template = null }) {
                 id="template-name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                onFocus={trackFocus}
-                onBlur={clearFocus}
                 placeholder="e.g. Weekly Newsletter"
                 required
-                className="h-9 rounded-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 focus-visible:ring-blue-500 focus-visible:border-blue-400 text-sm font-medium"
+                className="h-10 rounded-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 focus-visible:ring-blue-500 focus-visible:border-blue-400 text-sm font-medium"
               />
             </div>
 
-            {/* Description */}
-            <div className="flex flex-col gap-1.5 sm:col-span-8">
+            <div className="flex flex-col gap-1.5">
               <Label htmlFor="template-description" className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
                 Description
               </Label>
@@ -200,15 +156,12 @@ export default function TemplateForm({ template = null }) {
                 id="template-description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
-                onFocus={trackFocus}
-                onBlur={clearFocus}
-                placeholder="Internal notes about when this template is used..."
-                className="h-9 rounded-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 focus-visible:ring-blue-500 focus-visible:border-blue-400 text-sm"
+                placeholder="Internal notes..."
+                className="h-10 rounded-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 focus-visible:ring-blue-500 focus-visible:border-blue-400 text-sm"
               />
             </div>
 
-            {/* Subject */}
-            <div className="flex flex-col gap-1.5 sm:col-span-12">
+            <div className="flex flex-col gap-1.5">
               <Label htmlFor="subject-template" className="text-[10px] font-bold text-zinc-400 dark:text-zinc-500 uppercase tracking-widest">
                 Subject Line <span className="text-red-500">*</span>
               </Label>
@@ -220,73 +173,20 @@ export default function TemplateForm({ template = null }) {
                   id="subject-template"
                   value={subjectTemplate}
                   onChange={(e) => setSubjectTemplate(e.target.value)}
-                  onFocus={trackFocus}
-                  onBlur={clearFocus}
                   placeholder="Hi {{FirstName}}, here's your update from {{CompanyName}}!"
                   required
                   className="h-10 pl-11 rounded-xl border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/50 focus-visible:ring-blue-500 focus-visible:border-blue-400 text-sm font-medium"
                 />
               </div>
-              <p className="text-[11px] text-zinc-400 dark:text-zinc-500">
-                Click any variable on the right to insert it at the cursor, or type <code className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded">{"{{VarName}}"}</code> directly.
-              </p>
             </div>
           </div>
         </div>
 
-        {/* ── Visual Editor ── */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col">
-          {/* Titlebar */}
-          <div className="flex items-center justify-between px-5 py-3 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-800/40">
-            <div className="flex items-center gap-3">
-              <div className="flex items-center gap-1.5">
-                <span className="w-3 h-3 rounded-full bg-red-400" />
-                <span className="w-3 h-3 rounded-full bg-amber-400" />
-                <span className="w-3 h-3 rounded-full bg-emerald-400" />
-              </div>
-              <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 tracking-wide uppercase ml-1">
-                Visual Editor
-              </span>
-            </div>
-            <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 dark:text-zinc-500">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-              Auto-saving
-            </div>
-          </div>
-
-          <UnlayerEmailBuilder
-            ref={emailBuilderRef}
-            value={bodyTemplate}
-            initialDesign={initialDesign}
-            onChange={setBodyTemplate}
-            onReadyChange={setIsBuilderReady}
-            variables={variables}
-            className="w-full border-0 rounded-none shadow-none"
-            style={{ minHeight: 720 }}
-          />
-        </div>
-      </div>
-
-      {/* ══════════════════════════════
-          RIGHT COLUMN — Save + Variables
-         ══════════════════════════════ */}
-      <div className="w-full xl:w-[300px] flex flex-col gap-4 shrink-0 order-1 xl:order-2 xl:sticky xl:top-4">
-
-        {/* ── Save card ── */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
-          <div className="h-1 bg-blue-600 w-full" />
-          <div className="p-5 flex flex-col gap-3.5">
-            <div>
-              <p className="font-bold text-zinc-900 dark:text-white text-sm">
-                {template?.id ? "Save Changes" : "Publish Template"}
-              </p>
-              <p className="text-xs text-zinc-400 dark:text-zinc-500 mt-0.5">
-                {template?.id
-                  ? "Updates apply to all linked campaigns."
-                  : "Template becomes available in campaigns."}
-              </p>
-            </div>
-
+        {/* Right column: Publish + Variables */}
+        <div className="lg:col-span-1 flex flex-col gap-6">
+          
+          {/* Save Button */}
+          <div className="flex flex-col gap-3 shrink-0">
             {error && (
               <div className="rounded-xl border border-red-200 dark:border-red-900/40 bg-red-50 dark:bg-red-900/10 px-3.5 py-2.5 text-xs text-red-600 dark:text-red-400 font-medium leading-relaxed">
                 {error}
@@ -309,117 +209,139 @@ export default function TemplateForm({ template = null }) {
               </p>
             )}
           </div>
-        </div>
-
-        {/* ── Variables card ── */}
-        <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden">
-          <div className="flex items-center justify-between px-4 py-3.5 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-800/30">
-            <div className="flex items-center gap-2">
+          
+          {/* Variables Manager Card */}
+          <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col flex-1">
+            <div className="flex items-center gap-2.5 px-5 py-3.5 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/60 dark:bg-zinc-800/30">
               <div className="w-6 h-6 rounded-lg bg-indigo-600 flex items-center justify-center">
-                <Variable className="w-3 h-3 text-white" />
+                <Tag className="w-3 h-3 text-white" />
               </div>
-              <div>
-                <p className="text-sm font-bold text-zinc-900 dark:text-white leading-tight">Variables</p>
-              </div>
+              <h2 className="text-sm font-semibold text-zinc-900 dark:text-white">Variables</h2>
             </div>
-            {variables.length > 0 && (
-              <span className="text-[11px] font-bold text-indigo-600 dark:text-indigo-400 bg-indigo-50 dark:bg-indigo-900/30 border border-indigo-100 dark:border-indigo-800/50 px-2 py-0.5 rounded-full">
-                {variables.length}
-              </span>
-            )}
-          </div>
-
-          <div className="p-4 flex flex-col gap-3">
-            {/* Add input */}
-            <div className="flex gap-2">
-              <Input
-                placeholder="NewVariable"
-                value={newVarName}
-                onChange={(e) => setNewVarName(e.target.value.replace(/[^a-zA-Z0-9_]/g, ""))}
-                onKeyDown={(e) => { if (e.key === "Enter") { e.preventDefault(); addCustomVariable(); } }}
-                className="h-8 rounded-lg border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-800 text-xs font-mono flex-1 focus-visible:ring-indigo-500"
-              />
-              <Button
-                type="button"
-                onClick={addCustomVariable}
-                className="h-8 w-8 px-0 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-none shrink-0"
-              >
-                <Plus className="w-3.5 h-3.5" />
-              </Button>
-            </div>
-
-            {/* Hint */}
-            <div className="flex items-start gap-2 bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/40 rounded-xl px-3 py-2">
-              <MousePointerClick className="w-3.5 h-3.5 text-blue-500 dark:text-blue-400 shrink-0 mt-0.5" />
-              <p className="text-[11px] text-blue-700 dark:text-blue-300 leading-snug">
-                <strong>Click</strong> a variable to insert it at cursor in any text field, or copy it to paste into the email editor.
-              </p>
-            </div>
-
-            {/* Variables list */}
-            <div className="flex flex-col gap-1.5 min-h-[80px] max-h-[320px] overflow-y-auto">
-              {variables.length > 0 ? variables.map((variable) => {
-                const isCopied = copiedVar === variable;
-                return (
-                  <div
-                    key={variable}
-                    className="group flex items-center gap-1 rounded-lg border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800/60 hover:border-indigo-300 dark:hover:border-indigo-600 hover:bg-indigo-50/60 dark:hover:bg-indigo-900/15 transition-all duration-100 pr-1.5 pl-1.5 py-1 select-none"
-                  >
-                    <div
-                      draggable
-                      onDragStart={(e) => e.dataTransfer.setData("text/plain", `{{${variable}}}`)}
-                      className="cursor-grab active:cursor-grabbing p-1 rounded text-zinc-300 dark:text-zinc-600 hover:bg-zinc-100 dark:hover:bg-zinc-700/50 hover:text-indigo-400 touch-none"
-                      title="Drag to insert into editor"
-                    >
-                      <GripVertical className="w-3 h-3 shrink-0" />
-                    </div>
-                    <span 
-                      className="flex-1 font-mono text-[11px] font-bold text-indigo-700 dark:text-indigo-300 truncate cursor-pointer py-1"
-                      onMouseDown={(e) => e.preventDefault()}
-                      onClick={() => handleVariableClick(variable)}
-                      title="Click to insert / copy"
-                    >
-                      {`{{${variable}}}`}
-                    </span>
-                    <div className="flex items-center gap-0.5 shrink-0">
-                      <button
-                        type="button"
-                        onClick={(e) => { e.stopPropagation(); handleVariableClick(variable); }}
-                        className="p-1 rounded-md text-zinc-300 dark:text-zinc-600 hover:text-indigo-500 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors"
-                        title="Insert / copy"
-                      >
-                        {isCopied
-                          ? <Check className="w-3 h-3 text-emerald-500" />
-                          : <Copy className="w-3 h-3" />
+            
+            <div className="p-4 flex flex-col gap-4">
+              <div className="flex gap-2">
+                <Input
+                  id="new-variable"
+                  placeholder="New variable (e.g. {{name}})"
+                  className="h-9 text-xs font-mono bg-white dark:bg-zinc-900"
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      const val = e.currentTarget.value.trim();
+                      if (val) {
+                        const formatted = val.startsWith("{{") ? val : `{{${val}}}`;
+                        if (!variables.includes(formatted)) {
+                          setVariables([...variables, formatted]);
                         }
-                      </button>
+                        e.currentTarget.value = "";
+                      }
+                    }
+                  }}
+                />
+                <Button
+                  type="button"
+                  variant="secondary"
+                  className="h-9 px-4 text-xs font-medium"
+                  onClick={() => {
+                    const input = document.getElementById('new-variable');
+                    const val = input?.value.trim();
+                    if (val) {
+                      const formatted = val.startsWith("{{") ? val : `{{${val}}}`;
+                      if (!variables.includes(formatted)) {
+                        setVariables([...variables, formatted]);
+                      }
+                      input.value = "";
+                    }
+                  }}
+                >
+                  Add
+                </Button>
+              </div>
+
+              <div className="flex flex-wrap gap-2 overflow-y-auto max-h-[300px]">
+                {variables.length === 0 ? (
+                  <div className="w-full text-center py-6 text-sm text-zinc-500">
+                    No variables detected. Add one or type {"{{var}}"} in the editor.
+                  </div>
+                ) : (
+                  variables.map((variable, index) => (
+                    <div
+                      key={index}
+                      className="group flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 border border-zinc-200 dark:border-zinc-700 transition-colors"
+                    >
+                      <span 
+                        onClick={() => {
+                          navigator.clipboard.writeText(variable);
+                        }}
+                        className="text-xs font-mono text-zinc-700 dark:text-zinc-300 cursor-pointer"
+                        title="Click to copy"
+                      >
+                        {variable}
+                      </span>
                       <button
                         type="button"
-                        onClick={(e) => { e.stopPropagation(); removeVariable(variable); }}
-                        className="p-1 rounded-md text-zinc-300 dark:text-zinc-600 hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors opacity-0 group-hover:opacity-100"
+                        onClick={() => {
+                          const newVars = [...variables];
+                          newVars.splice(index, 1);
+                          setVariables(newVars);
+                        }}
+                        className="opacity-50 hover:opacity-100 hover:text-red-500 transition-opacity p-0.5"
                         title="Remove variable"
                       >
-                        <X className="w-3 h-3" />
+                        <Trash2 className="w-3 h-3" />
                       </button>
                     </div>
-                  </div>
-                );
-              }) : (
-                <div className="flex flex-col items-center justify-center py-7 text-center gap-2">
-                  <div className="w-9 h-9 rounded-xl border-2 border-dashed border-zinc-200 dark:border-zinc-700 flex items-center justify-center">
-                    <span className="text-xs font-bold text-zinc-300 dark:text-zinc-600">{"{}"}</span>
-                  </div>
-                  <p className="text-xs text-zinc-400 dark:text-zinc-500">No variables yet.<br />Add one above or use <code className="font-mono bg-zinc-100 dark:bg-zinc-800 px-1 rounded text-[10px]">{"{{Var}}"}</code> in subject.</p>
-                </div>
-              )}
+                  ))
+                )}
+              </div>
             </div>
-
-            {variables.length > 0 && (
-              <p className="text-[10px] text-zinc-400 dark:text-zinc-500 text-center leading-relaxed pt-0.5">
-                Drag into the editor · Click to insert/copy
-              </p>
-            )}
           </div>
+        </div>
+      </div>
+
+      {/* ── Visual Editor ── */}
+      <div className="w-full relative">
+        {isFullscreen && <div className="fixed inset-0 bg-black/60 z-40 backdrop-blur-sm transition-opacity duration-300" />}
+        <div className={`bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 shadow-sm overflow-hidden flex flex-col ${isFullscreen ? 'fixed inset-2 sm:inset-4 md:inset-6 lg:inset-8 z-[100] m-0 shadow-2xl animate-in zoom-in-95 duration-200 ease-out border-zinc-300 dark:border-zinc-700' : 'w-full relative'}`}>
+          {/* Titlebar */}
+          <div className="flex items-center justify-between px-5 py-2.5 border-b border-zinc-100 dark:border-zinc-800 bg-zinc-50/70 dark:bg-zinc-800/40">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-1.5">
+                <span className="w-2.5 h-2.5 rounded-full bg-red-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-amber-400" />
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-400" />
+              </div>
+              <span className="text-[10px] font-semibold text-zinc-500 dark:text-zinc-400 tracking-widest uppercase ml-1">
+                Visual Editor
+              </span>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-1.5 text-[11px] text-zinc-400 dark:text-zinc-500">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                Auto-saving
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsFullscreen(!isFullscreen)}
+                className="text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-200 transition-colors bg-white dark:bg-zinc-800 p-1.5 rounded-md border border-zinc-200 dark:border-zinc-700 shadow-sm"
+                title={isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
+              >
+                {isFullscreen ? <Minimize className="w-3.5 h-3.5" /> : <Maximize className="w-3.5 h-3.5" />}
+              </button>
+            </div>
+          </div>
+
+          <UnlayerEmailBuilder
+            ref={emailBuilderRef}
+            value={bodyTemplate}
+            initialDesign={initialDesign}
+            variables={variables}
+            onChange={setBodyTemplate}
+            onReadyChange={setIsBuilderReady}
+            className="w-full border-0 rounded-none shadow-none flex-1"
+            minHeight={isFullscreen ? '100vh' : '720px'}
+          />
         </div>
       </div>
 

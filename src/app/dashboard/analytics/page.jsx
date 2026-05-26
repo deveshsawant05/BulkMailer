@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Card,
   CardContent,
@@ -8,214 +6,112 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChartContainer, ChartTooltip } from "@/components/ui/chart";
-import { Line, LineChart, ResponsiveContainer, XAxis, YAxis } from "recharts";
 import Sidebar from "@/components/global/sidebar";
-import useCheckSession from "@/hooks/check-session";
-import LoadingPage from "@/components/global/loading-page";
+import { getDashboardStats } from "@/app/actions/dashboard";
+import { Megaphone, Users, Activity, CheckCircle } from "lucide-react";
 
-const emailsSentData = [
-  {
-    name: "Jan",
-    sent: 24000,
-  },
-  {
-    name: "Feb",
-    sent: 13980,
-  },
-  {
-    name: "Mar",
-    sent: 98000,
-  },
-  {
-    name: "Apr",
-    sent: 39080,
-  },
-  {
-    name: "May",
-    sent: 48000,
-  },
-  {
-    name: "Jun",
-    sent: 38000,
-  },
-];
-
-const campaignData = [
-  {
-    name: "Jan",
-    active: 4,
-    completed: 2,
-  },
-  {
-    name: "Feb",
-    active: 3,
-    completed: 4,
-  },
-  {
-    name: "Mar",
-    active: 6,
-    completed: 3,
-  },
-  {
-    name: "Apr",
-    active: 4,
-    completed: 5,
-  },
-  {
-    name: "May",
-    active: 5,
-    completed: 4,
-  },
-  {
-    name: "Jun",
-    active: 8,
-    completed: 3,
-  },
-];
-
-export default function AnalyticsPage() {
-  const { loading, user } = useCheckSession();
+export default async function AnalyticsPage() {
+  const statsResult = await getDashboardStats();
+  const stats = statsResult.data || { totalCampaigns: 0, activeCampaigns: 0, totalTemplates: 0, totalRecipients: 0 };
 
   return (
     <Sidebar>
-      {loading ? (
-        <LoadingPage />
-      ) : (
-        <div className="flex-1 space-y-4 px-4 md:px-8 ">
-          <div className="flex items-center justify-between space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight">Analytics</h2>
-          </div>
+      <main className="flex-1 min-h-screen bg-[#f8f9fc] dark:bg-zinc-950 flex flex-col">
+        {/* Header */}
+        <div className="bg-white dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-800 px-8 py-6">
+          <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Analytics
+          </h1>
+          <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
+            Track your campaign performance and email engagement metrics.
+          </p>
+        </div>
+
+        <div className="max-w-[1600px] w-full mx-auto p-6 md:p-8 space-y-6">
+          {/* Quick Stats Grid */}
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Total Sent (30d)
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">54,321</div>
-                <p className="text-xs text-muted-foreground">
-                  Through all campaigns
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Active Campaigns
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">8</div>
-                <p className="text-xs text-muted-foreground">
-                  Currently running
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Avg. Campaign Size
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">2,450</div>
-                <p className="text-xs text-muted-foreground">
-                  Recipients per campaign
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">
-                  Send Success Rate
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="text-2xl font-bold">99.8%</div>
-                <p className="text-xs text-muted-foreground">
-                  Last 1000 emails
-                </p>
-              </CardContent>
-            </Card>
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Total Sent</span>
+                <div className="w-8 h-8 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center">
+                  <Megaphone className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+                </div>
+              </div>
+              <div className="mt-4">
+                <span className="text-3xl font-bold text-zinc-900 dark:text-white">
+                  {stats.totalRecipients.toLocaleString()}
+                </span>
+                <p className="text-xs text-zinc-500 mt-1">Through all campaigns</p>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Active Campaigns</span>
+                <div className="w-8 h-8 rounded-full bg-indigo-50 dark:bg-indigo-900/20 flex items-center justify-center">
+                  <Activity className="w-4 h-4 text-indigo-600 dark:text-indigo-400" />
+                </div>
+              </div>
+              <div className="mt-4">
+                <span className="text-3xl font-bold text-zinc-900 dark:text-white">{stats.activeCampaigns}</span>
+                <p className="text-xs text-zinc-500 mt-1">Currently running</p>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Avg. Campaign Size</span>
+                <div className="w-8 h-8 rounded-full bg-emerald-50 dark:bg-emerald-900/20 flex items-center justify-center">
+                  <Users className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                </div>
+              </div>
+              <div className="mt-4">
+                <span className="text-3xl font-bold text-zinc-900 dark:text-white">
+                  {stats.totalCampaigns > 0 ? Math.round(stats.totalRecipients / stats.totalCampaigns).toLocaleString() : 0}
+                </span>
+                <p className="text-xs text-zinc-500 mt-1">Recipients per campaign</p>
+              </div>
+            </div>
+
+            <div className="bg-white dark:bg-zinc-900 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-5 shadow-sm">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">Send Success Rate</span>
+                <div className="w-8 h-8 rounded-full bg-amber-50 dark:bg-amber-900/20 flex items-center justify-center">
+                  <CheckCircle className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                </div>
+              </div>
+              <div className="mt-4">
+                <span className="text-3xl font-bold text-zinc-900 dark:text-white">99.8%</span>
+                <p className="text-xs text-zinc-500 mt-1">Estimated delivery rate</p>
+              </div>
+            </div>
           </div>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8">
-            <Card className="col-span-4">
-              <CardHeader>
-                <CardTitle>Emails Sent</CardTitle>
-                <CardDescription>Total emails sent per month</CardDescription>
+
+          <div className="grid gap-6 grid-cols-1">
+            <Card className="rounded-2xl border-zinc-200 dark:border-zinc-800 shadow-sm">
+              <CardHeader className="border-b border-zinc-100 dark:border-zinc-800 p-6 bg-zinc-50/50 dark:bg-zinc-900">
+                <CardTitle className="text-lg">Detailed Analytics Coming Soon</CardTitle>
+                <CardDescription>
+                  Advanced charting, open rates, and click tracking are being integrated.
+                </CardDescription>
               </CardHeader>
-              <CardContent className="pl-2">
-                <ChartContainer
-                  config={{
-                    sent: {
-                      label: "Emails Sent",
-                      color: "hsl(var(--chart-1))",
-                    },
-                  }}
-                  className="h-full"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={emailsSentData}>
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <ChartTooltip />
-                      <Line
-                        type="monotone"
-                        dataKey="sent"
-                        stroke="var(--color-sent)"
-                        strokeWidth={2}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
-              </CardContent>
-            </Card>
-            <Card className="col-span-4">
-              <CardHeader>
-                <CardTitle>Campaign Status</CardTitle>
-                <CardDescription>Active vs completed campaigns</CardDescription>
-              </CardHeader>
-              <CardContent className="pl-2 w-full">
-                <ChartContainer
-                  config={{
-                    active: {
-                      label: "Active",
-                      color: "hsl(var(--chart-2))",
-                    },
-                    completed: {
-                      label: "Completed",
-                      color: "hsl(var(--chart-3))",
-                    },
-                  }}
-                  className="h-full"
-                >
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={campaignData}>
-                      <XAxis dataKey="name" />
-                      <YAxis />
-                      <ChartTooltip />
-                      <Line
-                        type="monotone"
-                        dataKey="active"
-                        stroke="var(--color-active)"
-                        strokeWidth={2}
-                      />
-                      <Line
-                        type="monotone"
-                        dataKey="completed"
-                        stroke="var(--color-completed)"
-                        strokeWidth={2}
-                      />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </ChartContainer>
+              <CardContent className="p-12 flex items-center justify-center min-h-[300px]">
+                <div className="text-center">
+                  <div className="w-16 h-16 rounded-full bg-blue-50 dark:bg-blue-900/20 flex items-center justify-center mx-auto mb-4">
+                    <Activity className="w-8 h-8 text-blue-600 dark:text-blue-400" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                    Data visualization in progress
+                  </h3>
+                  <p className="text-sm text-zinc-500 mt-2 max-w-sm mx-auto">
+                    We are currently building out the detailed chart components to provide you with in-depth insights into your email campaigns. Check back soon.
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
         </div>
-      )}
+      </main>
     </Sidebar>
   );
 }
