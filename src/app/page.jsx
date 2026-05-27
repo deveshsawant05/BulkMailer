@@ -1,26 +1,24 @@
-"use server"
-import Image from "next/image";
-import { WorldMapComponent } from "@/components/landing-page/world-map";
-import { FeaturesSectionDemo } from "@/components/landing-page/features-section";
 import Hero from "@/components/landing-page/hero-section";
-import { HeroScrollDemo } from "@/components/landing-page/container-scroll";
-import Footer from "@/components/ui/footer";
-export default async function Home() {
+import LandingContent from "@/components/landing-page/landing-content";
+import LandingFooter from "@/components/landing-page/landing-footer";
+import LandingMotion from "@/components/landing-page/landing-motion";
+import "./landing.css";
+import "./landing-animations.css";
+
+export const metadata = {
+  title: "BulkMailer | A personal touch in every email",
+  description:
+    "Create personalized email templates, manage campaigns, and follow sending progress in one simple BulkMailer workspace.",
+};
+
+export default function Home() {
   return (
-    <div className="h-full w-full">
+    <LandingMotion><div className="landing-page">
       <Hero />
-      <HeroScrollDemo />
-      <div className="flex w-full justify-center items-center">
-        <div className=" w-3/4">
-          <div className="h-full w-full dark:bg-black bg-white  dark:bg-grid-white/[0.2] bg-grid-black/[0.05] relative flex items-center justify-center">
-          {/* Radial gradient for the container to give a faded look */}
-          <div className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
-              <FeaturesSectionDemo />
-            </div>
-        </div>
-        </div>
-      <Footer />
-      {/* <WorldMapComponent /> */}
-    </div>
+      <main>
+        <LandingContent />
+      </main>
+      <LandingFooter />
+    </div></LandingMotion>
   );
 }

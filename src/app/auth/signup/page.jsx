@@ -28,12 +28,12 @@ export default function SignUpPage() {
 
   return (
     (
-    <div className="flex min-h-svh flex-col items-center justify-center gap-6 bg-muted p-6 md:py-6 md:px-10">
-      <div className="flex w-full max-w-sm flex-col gap-2">
-        <Link href="/" className="flex items-center gap-2 self-center font-medium">
+    <div className="auth-page auth-page--signup">
+      <div className="auth-container">
+        <Link href="/" className="auth-brand-link">
           <Logo />
         </Link>
-        {confirmSignUp ? <VerifyOTP email={email} /> : <SignUpForm email={email} setEmail={setEmail} setConfirmSignUp={setConfirmSignUp} />}
+        <div className="auth-form-surface">{confirmSignUp ? <VerifyOTP email={email} /> : <SignUpForm email={email} setEmail={setEmail} setConfirmSignUp={setConfirmSignUp} />}</div>
       </div>
     </div>)
   );
